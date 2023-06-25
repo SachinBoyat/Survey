@@ -1,0 +1,164 @@
+<div>
+  <!-- Tabs Container --- bacgound: #3b76ef -->
+  <div class="flex-c">
+    <mat-card class="tab-card flex-c">
+      <mat-card-content class="flex-sb">
+        <span>Customize & Select Template</span>
+        <div class="tab-card-count flex-c">1</div>
+      </mat-card-content>
+    </mat-card>
+    <div class="tabs-hr"></div>
+    <mat-card class="tab-card">
+      <mat-card-content class="flex-sb">
+        <span>Staff Member Import</span>
+        <div class="tab-card-count flex-c">2</div>
+      </mat-card-content>
+    </mat-card>
+    <div class="tabs-hr"></div>
+    <mat-card class="tab-card">
+      <mat-card-content class="flex-sb">
+        <span>Copy & Paste for Signature</span>
+        <div class="tab-card-count flex-c">3</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Tab 1 content -->
+  <div>
+    <!-- Preview Survey -->
+    <div class="preview-survey">
+      <p class="card-label">Preview Survey</p>
+      <mat-card class="shadow-none">
+        <mat-card-content class="flex-c flex-col">
+          <p style="font-weight: bold">How would you rate my customer service?</p>
+          <div class="flex mt-10">
+            <div class="preview-image flex-c flex-col">
+              <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
+              <p>Dissatisfied</p>
+            </div>
+            <div class="preview-image flex-c flex-col">
+              <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
+              <p>Satisfied</p>
+            </div>
+            <div class="preview-image flex-c flex-col">
+              <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
+              <p>Exceeded Expectations</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Customize Call to Action -->
+    <div class="survey-customize" style="display: flex; justify-content: space-between; align-items: stretch">
+      <!-- edit font, color, size -->
+      <div style="width: 70%">
+        <p class="card-label">Customize Call to Action</p>
+        <mat-card class="shadow-none" style="height: 100%">
+          <mat-card-content class="flex-sb">
+            <div style="align-self: baseline">
+              <h4 class="label">Call to Action</h4>
+              <div class="flex-c">
+                <mat-form-field appearance="outline" class="flex-row">
+                  <mat-label>Select Title</mat-label>
+                  <mat-select [(ngModel)]="selectedTitle" name="food">
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                      {{ food.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button
+                  mat-fab
+                  extended
+                  color="white"
+                  style="border: 1px solid #3b76ef; color: #3b76ef; margin-left: 10px"
+                >
+                  <mat-icon>edit</mat-icon>
+                  Edit
+                </button>
+              </div>
+            </div>
+
+            <div style="align-self: baseline">
+              <h4 class="label">Size</h4>
+              <div>
+                <mat-form-field style="width: 70px" appearance="outline">
+                  <mat-select [(ngModel)]="selectedFontSize" name="fontSize">
+                    <mat-option *ngFor="let size of fontSizes" [value]="size.value">
+                      {{ size.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div style="align-self: baseline">
+              <h4 class="label">Font</h4>
+              <div>
+                <mat-form-field appearance="outline">
+                  <mat-select [(ngModel)]="selectedFontType" name="fontType">
+                    <mat-option *ngFor="let sizeType of fontTypes" [value]="sizeType.value">
+                      {{ sizeType.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div style="align-self: baseline">
+              <div>
+                <h4 class="label">Color</h4>
+                <div style="display: flex">
+                  <div
+                    *ngFor="let fontColor of fontColors"
+                    class="font-color-type"
+                    [style.background-color]="fontColor.viewValue"
+                  ></div>
+                </div>
+              </div>
+              <div class="mt-20">
+                <h4 class="label">Hex Color</h4>
+                <div class="flex-c">
+                  <mat-form-field appearance="outline" class="flex-row">
+                    <input matInput />
+                  </mat-form-field>
+                  <div class="font-color-type" style="background-color: blue; margin-left: 10px"></div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <!-- Customize icons -->
+      <div style="width: 25%">
+        <p class="card-label">Customize Icons</p>
+        <mat-card class="shadow-none" style="height: 100%">
+          <mat-card-content>
+            <div class="flex flex-col" style="align-self: baseline">
+              <h4 class="label">Icon Type</h4>
+              <mat-form-field appearance="outline" class="flex-row">
+                <mat-label>Select Icon Type</mat-label>
+                <mat-select [(ngModel)]="selectedTitle" name="food">
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                    {{ food.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="flex flex-col mt-20" style="align-self: baseline">
+              <h4 class="label">Number of Icons</h4>
+              <mat-form-field appearance="outline" class="flex-row">
+                <mat-label>Select Count</mat-label>
+                <mat-select [(ngModel)]="selectedFontSize" name="fontSize">
+                  <mat-option *ngFor="let size of fontSizes" [value]="size.value">
+                    {{ size.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

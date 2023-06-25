@@ -1,5 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* Utility classes */
+
+/* Margin top */
+.mt-5 {
+  margin-top: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
+
+/* Margin bottom */
+.mb-5 {
+  margin-top: 5px;
+}
+.mb-10 {
+  margin-top: 10px;
+}
+.mb-15 {
+  margin-top: 15px;
+}
+.mb-20 {
+  margin-top: 20px;
+}
+
+/* Margin left */
+.ml-5 {
+  margin-top: 5px;
+}
+.ml-10 {
+  margin-top: 10px;
+}
+.ml-15 {
+  margin-top: 15px;
+}
+.ml-20 {
+  margin-top: 20px;
+}
+
+/* Margin right */
+.mr-5 {
+  margin-top: 5px;
+}
+.mr-10 {
+  margin-top: 10px;
+}
+.mr-15 {
+  margin-top: 15px;
+}
+.mr-20 {
+  margin-top: 20px;
+}
+
+/* Flex utility */
+.flex {
+  display: flex;
+}
+
+.flex-r {
+  display: flex !important;
+  justify-content: right !important;
+  align-items: center !important;
+}
+
+.flex-c {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.flex-sb {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.flex-col {
+  flex-direction: column !important;
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+
+.shadow-none {
+  box-shadow: none !important;
+}
+
+.label {
+  color: #4b5a7a !important;
+}
