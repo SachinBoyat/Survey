@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,14 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
+  constructor(private router: Router) {
+
+  }
+
   onLoginFormSubmit() {
-    console.log('xxxxxxxxxxxx');
+    if (this.loginForm.value.email === "admin@admin.com" && this.loginForm.value.password === "admin") {
+      this.router.navigate(['/', 'setup'])
+    }
   }
 
   ngOnInit() {}
