@@ -1,4 +1,4 @@
-<div>
+<div style="padding: 50px 30px 60px 30px">
   <!-- Tabs Container --- bacgound: #3b76ef -->
   <div class="flex-c">
     <mat-card class="tab-card flex-c">
@@ -26,7 +26,7 @@
   <!-- Tab 1 content -->
   <div>
     <!-- Preview Survey -->
-    <div class="preview-survey">
+    <div class="preview-survey" style="margin-top: 50px">
       <p class="card-label">Preview Survey</p>
       <mat-card class="shadow-none">
         <mat-card-content class="flex-c flex-col">
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Customize Call to Action -->
-    <div class="survey-customize" style="display: flex; justify-content: space-between; align-items: stretch">
+    <div class="survey-customize flex-sb" style="margin-top: 50px">
       <!-- edit font, color, size -->
       <div style="width: 70%">
         <p class="card-label">Customize Call to Action</p>
@@ -73,7 +73,7 @@
                   color="white"
                   style="border: 1px solid #3b76ef; color: #3b76ef; margin-left: 10px"
                 >
-                  <mat-icon>edit</mat-icon>
+                  <mat-icon fontIcon="edit">edit</mat-icon>
                   Edit
                 </button>
               </div>
@@ -95,7 +95,7 @@
             <div style="align-self: baseline">
               <h4 class="label">Font</h4>
               <div>
-                <mat-form-field appearance="outline">
+                <mat-form-field style="width: 100px" appearance="outline">
                   <mat-select [(ngModel)]="selectedFontType" name="fontType">
                     <mat-option *ngFor="let sizeType of fontTypes" [value]="sizeType.value">
                       {{ sizeType.viewValue }}
@@ -119,7 +119,7 @@
               <div class="mt-20">
                 <h4 class="label">Hex Color</h4>
                 <div class="flex-c">
-                  <mat-form-field appearance="outline" class="flex-row">
+                  <mat-form-field appearance="outline" class="flex-row" style="width: 100px">
                     <input matInput />
                   </mat-form-field>
                   <div class="font-color-type" style="background-color: blue; margin-left: 10px"></div>
@@ -130,7 +130,7 @@
         </mat-card>
       </div>
       <!-- Customize icons -->
-      <div style="width: 25%">
+      <div style="width: 26%">
         <p class="card-label">Customize Icons</p>
         <mat-card class="shadow-none" style="height: 100%">
           <mat-card-content>
@@ -158,6 +158,59 @@
             </div>
           </mat-card-content>
         </mat-card>
+      </div>
+    </div>
+
+    <!-- Select Icon Template -->
+    <div class="Select-icons flex flex-col" style="margin-top: 50px">
+      <p class="card-label">Customize Icons</p>
+      <div class="flex-sb">
+        <!-- edit font, color, size -->
+        <div style="width: 48%">
+          <mat-card (click)="openDialog('0ms', '0ms')" class="shadow-none" style="height: 100%">
+            <h4 class="label">Static</h4>
+            <mat-card-content class="flex-c flex-col">
+              <div class="flex mt-10">
+                <div class="preview-image flex-c flex-col">
+                  <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
+                  <p>Dissatisfied</p>
+                </div>
+                <div class="preview-image flex-c flex-col">
+                  <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
+                  <p>Satisfied</p>
+                </div>
+                <div class="preview-image flex-c flex-col">
+                  <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
+                  <p>Exceeded Expectations</p>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <!-- Customize icons -->
+        <div style="width: 48%">
+          <mat-card class="shadow-none" style="height: 100%">
+            <mat-card (click)="openDialog('0ms', '0ms')" class="shadow-none" style="height: 100%">
+              <h4 class="label">Animation</h4>
+              <mat-card-content class="flex-c flex-col">
+                <div class="flex mt-10">
+                  <div class="preview-image flex-c flex-col">
+                    <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
+                    <p>Dissatisfied</p>
+                  </div>
+                  <div class="preview-image flex-c flex-col">
+                    <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
+                    <p>Satisfied</p>
+                  </div>
+                  <div class="preview-image flex-c flex-col">
+                    <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
+                    <p>Exceeded Expectations</p>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>

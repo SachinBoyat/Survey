@@ -1,0 +1,18 @@
+<mat-card class="shadow-none">
+  <mat-card-content class="flex-c flex-col">
+    <div class="flex mt-10" *ngFor="let icon of staticIcons">
+      <div class="preview-image flex-c flex-col">
+        <img [src]="icon.icons[0].url" height="50" width="50" />
+        <p>{{ icon.icons[0].text }}</p>
+      </div>
+      <div class="preview-image flex-c flex-col">
+        <img [src]="icon.icons[1].url" height="50" width="50" />
+        <p>{{ icon.icons[1].text }}</p>
+      </div>
+      <div class="preview-image flex-c flex-col">
+        <img [src]="icon.icons[2].url" height="50" width="50" />
+        <p>{{ icon.icons[2].text }}</p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
