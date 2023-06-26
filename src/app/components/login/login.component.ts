@@ -21,13 +21,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  constructor(private router: Router) {
-
-  }
+  constructor(private router: Router) {}
 
   onLoginFormSubmit() {
-    if (this.loginForm.value.email === "admin@admin.com" && this.loginForm.value.password === "admin") {
-      this.router.navigate(['/', 'setup'])
+    if (this.loginForm.value.email === 'admin@admin.com' && this.loginForm.value.password === 'admin') {
+      this.router.navigate(['/', 'dashboard']);
     }
   }
 

@@ -1,0 +1,42 @@
+<div>
+  <div style="background-color: #fff; height: 40px; display: flex; justify-content: start">
+    <img
+      mat-card-sm-image
+      style="margin: auto; width: 250px; height: 40px; margin-bottom: 20px"
+      src="../../../assets/images/company-logo.png"
+      alt="Photo of a Shiba Inu"
+    />
+    <div style="flex-grow: 1"></div>
+  </div>
+  <mat-tab-group [@.disabled]="true" class="left-menu">
+    <mat-tab labelClass="naveen">
+      <ng-template mat-tab-label>
+        <div class="flex-c flex-col">
+          <mat-icon class="white-icon">edit</mat-icon>
+          <p class="menu-text">SETUP</p>
+        </div>
+      </ng-template>
+      <div>
+        <app-setup />
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="flex-c flex-col mt-20">
+          <mat-icon class="white-icon">person</mat-icon>
+          <p class="menu-text">CUSTOMER FEEDBACK</p>
+        </div>
+      </ng-template>
+      <div>Content 2</div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="flex-c flex-col mt-20">
+          <mat-icon class="white-icon">list</mat-icon>
+          <p class="menu-text">REPORTING</p>
+        </div>
+      </ng-template>
+      <div>Content 2</div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

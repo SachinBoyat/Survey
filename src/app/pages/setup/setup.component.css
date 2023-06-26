@@ -27,7 +27,7 @@
 }
 
 .card-label {
-  width: 280px;
+  width: 210px;
   border-bottom: 2px solid #3b76ef;
   color: #4b5a7a;
 }
@@ -37,7 +37,13 @@
   align-self: baseline;
 }
 
-.preview-image p {
+.preview-image-signature {
+  width: 100px;
+  align-self: baseline;
+}
+
+.preview-image p,
+.preview-image-signature p {
   font-size: 12px;
   text-align: center;
   margin-top: 10px;
@@ -47,4 +53,18 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
+}
+
+:host ::ng-deep.agent-tab > mat-tab-header + div > mat-tab-body {
+  height: 170px;
+}
+
+.btn-arrow {
+  border: 1px solid #3b76ef;
+  color: #3b76ef;
+  margin-left: 10px;
+}
+
+.first-row {
+  border-bottom: 1px solid #bdbdbd;
 }

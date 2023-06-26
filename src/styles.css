@@ -13,6 +13,13 @@ body {
 
 /* Utility classes */
 
+.h-100p {
+  height: 100%;
+}
+.w-100p {
+  width: 100%;
+}
+
 /* Margin top */
 .mt-5 {
   margin-top: 5px;
@@ -26,47 +33,56 @@ body {
 .mt-20 {
   margin-top: 20px;
 }
+.mt-30 {
+  margin-top: 30px;
+}
+.mt-40 {
+  margin-top: 40px;
+}
+.mt-50 {
+  margin-top: 50px;
+}
 
 /* Margin bottom */
 .mb-5 {
-  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .mb-10 {
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .mb-15 {
-  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .mb-20 {
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 /* Margin left */
 .ml-5 {
-  margin-top: 5px;
+  margin-left: 5px;
 }
 .ml-10 {
-  margin-top: 10px;
+  margin-left: 10px;
 }
 .ml-15 {
-  margin-top: 15px;
+  margin-left: 15px;
 }
 .ml-20 {
-  margin-top: 20px;
+  margin-left: 20px;
 }
 
 /* Margin right */
 .mr-5 {
-  margin-top: 5px;
+  margin-right: 5px;
 }
 .mr-10 {
-  margin-top: 10px;
+  margin-right: 10px;
 }
 .mr-15 {
-  margin-top: 15px;
+  margin-right: 15px;
 }
 .mr-20 {
-  margin-top: 20px;
+  margin-right: 20px;
 }
 
 /* Flex utility */

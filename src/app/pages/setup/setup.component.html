@@ -1,4 +1,4 @@
-<div style="padding: 50px 30px 60px 30px">
+<div style="padding: 50px 30px 30px 30px">
   <!-- Tabs Container --- bacgound: #3b76ef -->
   <div class="flex-c">
     <mat-card class="tab-card flex-c">
@@ -8,25 +8,29 @@
       </mat-card-content>
     </mat-card>
     <div class="tabs-hr"></div>
-    <mat-card class="tab-card">
+    <mat-card class="tab-card flex-c">
       <mat-card-content class="flex-sb">
         <span>Staff Member Import</span>
         <div class="tab-card-count flex-c">2</div>
       </mat-card-content>
     </mat-card>
     <div class="tabs-hr"></div>
-    <mat-card class="tab-card">
+    <mat-card class="tab-card flex-c">
       <mat-card-content class="flex-sb">
         <span>Copy & Paste for Signature</span>
         <div class="tab-card-count flex-c">3</div>
       </mat-card-content>
     </mat-card>
   </div>
+  <!-- Next button -->
+  <div class="flex-r mt-20">
+    <a mat-fab extended routerLink="." style="background-color: green" (click)="countPlus()"> Next &rarr; </a>
+  </div>
 
-  <!-- Tab 1 content -->
-  <div>
+  <!-- Tab 1 content start -->
+  <div *ngIf="count === 0">
     <!-- Preview Survey -->
-    <div class="preview-survey" style="margin-top: 50px">
+    <div class="preview-survey">
       <p class="card-label">Preview Survey</p>
       <mat-card class="shadow-none">
         <mat-card-content class="flex-c flex-col">
@@ -50,11 +54,11 @@
     </div>
 
     <!-- Customize Call to Action -->
-    <div class="survey-customize flex-sb" style="margin-top: 50px">
+    <div class="survey-customize flex-sb mt-30" style="align-items: stretch !important">
       <!-- edit font, color, size -->
-      <div style="width: 70%">
+      <div style="width: 70%" class="flex flex-col">
         <p class="card-label">Customize Call to Action</p>
-        <mat-card class="shadow-none" style="height: 100%">
+        <mat-card class="shadow-none" style="flex-grow: 1">
           <mat-card-content class="flex-sb">
             <div style="align-self: baseline">
               <h4 class="label">Call to Action</h4>
@@ -67,12 +71,7 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
-                <button
-                  mat-fab
-                  extended
-                  color="white"
-                  style="border: 1px solid #3b76ef; color: #3b76ef; margin-left: 10px"
-                >
+                <button mat-fab extended color="white" class="btn-arrow">
                   <mat-icon fontIcon="edit">edit</mat-icon>
                   Edit
                 </button>
@@ -122,7 +121,7 @@
                   <mat-form-field appearance="outline" class="flex-row" style="width: 100px">
                     <input matInput />
                   </mat-form-field>
-                  <div class="font-color-type" style="background-color: blue; margin-left: 10px"></div>
+                  <div class="font-color-type ml-10" style="background-color: blue"></div>
                 </div>
               </div>
             </div>
@@ -132,7 +131,7 @@
       <!-- Customize icons -->
       <div style="width: 26%">
         <p class="card-label">Customize Icons</p>
-        <mat-card class="shadow-none" style="height: 100%">
+        <mat-card class="shadow-none">
           <mat-card-content>
             <div class="flex flex-col" style="align-self: baseline">
               <h4 class="label">Icon Type</h4>
@@ -162,12 +161,12 @@
     </div>
 
     <!-- Select Icon Template -->
-    <div class="Select-icons flex flex-col" style="margin-top: 50px">
+    <div class="Select-icons flex flex-col mt-30">
       <p class="card-label">Customize Icons</p>
       <div class="flex-sb">
         <!-- edit font, color, size -->
         <div style="width: 48%">
-          <mat-card (click)="openDialog('0ms', '0ms')" class="shadow-none" style="height: 100%">
+          <mat-card (click)="openDialog('0ms', '0ms')" class="shadow-none h-100p">
             <h4 class="label">Static</h4>
             <mat-card-content class="flex-c flex-col">
               <div class="flex mt-10">
@@ -189,8 +188,8 @@
         </div>
         <!-- Customize icons -->
         <div style="width: 48%">
-          <mat-card class="shadow-none" style="height: 100%">
-            <mat-card (click)="openDialog('0ms', '0ms')" class="shadow-none" style="height: 100%">
+          <mat-card class="shadow-none h-100p">
+            <mat-card (click)="openDialog('0ms', '0ms')" class="shadow-none h-100p">
               <h4 class="label">Animation</h4>
               <mat-card-content class="flex-c flex-col">
                 <div class="flex mt-10">
@@ -212,6 +211,171 @@
           </mat-card>
         </div>
       </div>
+    </div>
+
+    <!-- <div class="flex-r mt-20">
+      <a mat-fab extended routerLink="." style="background-color: green"> Next &rarr; </a>
+    </div> -->
+  </div>
+  <!-- Tab 1 content end -->
+
+  <!-- Tab 2 content start -->
+  <div *ngIf="count === 1" class="add-agent-tab">
+    <div>
+      <p class="card-label">BULK IMPORT(OPTIONAL)</p>
+      <mat-card class="shadow-none">
+        <mat-card-content>
+          <mat-tab-group mat-align-tabs="center" class="agent-tab">
+            <mat-tab label="IMPORT FROM EMAIL CLIENTS">
+              <div class="flex-c mt-20" style="gap: 60px">
+                <div class="email-clients" class="flex flex-col">
+                  <h4 class="label">Select email client</h4>
+                  <div class="flex">
+                    <div style="height: 90px; width: 130px">
+                      <img src="../../../assets/images/google-suit.png" class="h-100p w-100p" />
+                    </div>
+                    <div style="height: 90px; width: 130px">
+                      <img src="../../../assets/images/office-suit.png" class="h-100p w-100p" />
+                    </div>
+                  </div>
+                </div>
+
+                <div style="align-self: baseline">
+                  <h4 class="label">Are you a Global Admin?</h4>
+                  <div>
+                    <mat-form-field style="width: 100px" appearance="outline">
+                      <mat-select [(ngModel)]="selectedAdminType" name="selectAdmin">
+                        <mat-option *ngFor="let admin of globalAdmin" [value]="admin.value">
+                          {{ admin.viewValue }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <button mat-fab extended color="white" class="btn-arrow">Connect</button>
+              </div>
+            </mat-tab>
+            <mat-tab label="IMPORT FROM CSV">
+              <div class="flex-c h-100p">
+                <div class="flex-c mt-20" style="gap: 30px">
+                  <img src="../../../assets/images/csv upload.svg" />
+                  <div>
+                    <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+                    <input hidden (change)="onFileSelected($event)" #fileInput type="file" />
+                    <span class="file-name ml-20">{{ selectedFile?.name }}</span>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="mt-40">
+      <p class="card-label">STAFF MEMBERS</p>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="agentId">
+          <th mat-header-cell *matHeaderCellDef>Agent ID.</th>
+          <td mat-cell *matCellDef="let element">{{ element.agentId }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="fullName">
+          <th mat-header-cell *matHeaderCellDef>Full Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef>Default Email Address</th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox
+              (change)="$event ? toggleAllRows() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              [aria-label]="checkboxLabel()"
+            >
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox
+              (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)"
+              [aria-label]="checkboxLabel(row)"
+            >
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
+      </table>
+    </div>
+  </div>
+  <!-- Tab 2 content end -->
+
+  <!-- Tab 3 content start -->
+  <div *ngIf="count === 2" class="signature-code-copy">
+    <div>
+      <p class="card-label">Signature</p>
+      <mat-card class="shadow-none">
+        <mat-card-content class="flex-sb">
+          <div style="width: 400px">
+            <div class="flex flex-col" style="border: 1px solid #bdbdbd; border-radius: 5px">
+              <div
+                class="flex signature-agent-details first-row"
+                style="height: 50px; align-items: center; padding-left: 10px"
+              >
+                <span style="width: 110px; color: #4b5a7a; font-weight: bold">FullName</span>
+                <span style="width: 290px">Naveen Kumar</span>
+              </div>
+              <div class="flex signature-agent-details" style="height: 50px; align-items: center; padding-left: 10px">
+                <span style="width: 110px; color: #4b5a7a; font-weight: bold">Email Address</span>
+                <span style="width: 290px; color: #3b76ef">abc@admin.com</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <mat-card class="shadow-none flex-c flex-col">
+              <p style="font-weight: bold">How would you rate my customer service?</p>
+              <div class="flex mt-10">
+                <div class="preview-image-signature flex-c flex-col">
+                  <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
+                  <p>Dissatisfied</p>
+                </div>
+                <div class="preview-image-signature flex-c flex-col">
+                  <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
+                  <p>Satisfied</p>
+                </div>
+                <div class="preview-image-signature flex-c flex-col">
+                  <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
+                  <p>Exceeded Expectations</p>
+                </div>
+              </div>
+            </mat-card>
+          </div>
+          <div class="flex flex-col">
+            <div class="mt-10">
+              <a mat-fab extended routerLink="." style="background-color: green"> Copy Code to Clipboard </a>
+            </div>
+            <div class="mt-10">
+              <a mat-fab extended routerLink="." style="background-color: green"> Copy HTML to Clipboard </a>
+            </div>
+            <div class="mt-10">
+              <a mat-fab extended routerLink="." style="background-color: blue">Email Survey to Agent </a>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
