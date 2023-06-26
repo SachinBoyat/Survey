@@ -1,0 +1,70 @@
+.tab-card {
+  width: 288px;
+  height: 85px;
+  box-shadow: none;
+}
+
+.tab-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tab-card-count {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #00000066;
+  border-radius: 50px;
+  margin-left: 10px;
+}
+
+.tabs-hr {
+  border-bottom: 1px solid #bdbdbd;
+  max-width: 200px;
+  height: 1px;
+  width: 100px;
+  min-width: 50px;
+}
+
+.card-label {
+  width: 210px;
+  border-bottom: 2px solid #3b76ef;
+  color: #4b5a7a;
+}
+
+.preview-image {
+  width: 150px;
+  align-self: baseline;
+}
+
+.preview-image-signature {
+  width: 100px;
+  align-self: baseline;
+}
+
+.preview-image p,
+.preview-image-signature p {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.font-color-type {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+:host ::ng-deep.agent-tab > mat-tab-header + div > mat-tab-body {
+  height: 170px;
+}
+
+.btn-arrow {
+  border: 1px solid #3b76ef;
+  color: #3b76ef;
+  margin-left: 10px;
+}
+
+.first-row {
+  border-bottom: 1px solid #bdbdbd;
+}
