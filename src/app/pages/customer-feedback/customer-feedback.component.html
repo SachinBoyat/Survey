@@ -1,0 +1,41 @@
+<div style="padding: 50px 30px 30px 30px">
+  <div class="list-options flex-sb">
+    <div class="flex flex-col" style="width: 200px">
+      <h4 class="label">Rating</h4>
+      <mat-form-field appearance="outline" class="flex-row">
+        <mat-label>Select Title</mat-label>
+        <mat-select [(ngModel)]="selectedTitle" name="food">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col" style="width: 200px">
+      <h4 class="label">Agents</h4>
+      <mat-form-field appearance="outline" class="flex-row">
+        <mat-label>Select Title</mat-label>
+        <mat-select [(ngModel)]="selectedTitle" name="food">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col" style="width: 200px">
+      <h4 class="label">Data Range</h4>
+      <mat-form-field appearance="outline" class="flex-row">
+        <mat-label>Select Title</mat-label>
+        <mat-select [(ngModel)]="selectedTitle" name="food">
+          <mat-option *ngFor="let food of foods" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="results"></div>
+</div>

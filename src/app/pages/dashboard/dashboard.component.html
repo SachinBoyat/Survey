@@ -9,7 +9,7 @@
     <div style="flex-grow: 1"></div>
   </div>
   <mat-tab-group [@.disabled]="true" class="left-menu">
-    <mat-tab labelClass="naveen">
+    <mat-tab>
       <ng-template mat-tab-label>
         <div class="flex-c flex-col">
           <mat-icon class="white-icon">edit</mat-icon>
@@ -17,7 +17,7 @@
         </div>
       </ng-template>
       <div>
-        <app-setup />
+        <app-customer-feedback />
       </div>
     </mat-tab>
     <mat-tab>
@@ -27,7 +27,7 @@
           <p class="menu-text">CUSTOMER FEEDBACK</p>
         </div>
       </ng-template>
-      <div>Content 2</div>
+      <div><app-setup /></div>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>

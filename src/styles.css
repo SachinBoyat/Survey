@@ -123,3 +123,29 @@ body {
 .label {
   color: #4b5a7a !important;
 }
+
+.mdc-line-ripple {
+  display: none;
+}
+
+/* for globally button backgound button */
+.mat-mdc-fab.mat-primary,
+.mat-mdc-mini-fab.mat-primary {
+  background-color: #2e2e2e;
+}
+
+.mat-mdc-fab[disabled][disabled],
+.mat-mdc-mini-fab[disabled][disabled] {
+  background-color: rgb(225, 228, 225);
+}
+
+.mat-mdc-extended-fab {
+  height: 56px !important;
+  border-radius: 40px !important;
+}
+
+/* for globally text input */
+.mat-mdc-text-field-wrapper {
+  border: 1px solid #2e2e2e;
+  border-radius: 40px !important;
+}
