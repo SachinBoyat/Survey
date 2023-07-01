@@ -1,41 +1,189 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 100%">
-  <mat-card style="width: 400px">
-    <p style="text-align: center; margin-top: 20px">Test Email: admin@admin.com</p>
-    <p style="text-align: center">Test Password: admin</p>
+<div class="flex-sb" style="align-items: flex-start !important; padding: 40px 40px 0px 130px">
+  <div class="flex flex-col" style="width: 40%" [ngStyle]="{ order: enableForms.isRegisterForm ? 2 : 0 }">
+    <div class="flex-sb" style="align-items: center">
+      <img
+        mat-card-sm-image
+        style="width: 100px; height: 30px; margin-bottom: 40px"
+        src="../../../assets/images/company-logo.png"
+        alt="Photo of a Shiba Inu"
+      />
+
+      <p style="align-content: center; margin-right: 70px" *ngIf="enableForms.isRegisterForm">
+        <a
+          style="color: #000; font-size: 20px; text-decoration: none"
+          href="#"
+          (click)="enableFormHandler('isLoginForm')"
+        >
+          &larr; Login</a
+        >
+      </p>
+    </div>
+    <!-- for login -->
+    <div style="flex-grow: 1" *ngIf="enableForms.isLoginForm">
+      <mat-card style="width: 400px; box-shadow: none">
+        <h1>Login your account</h1>
+        <p style="margin-top: 0px; color: red">Test Email: admin@admin.com</p>
+        <p style="color: red">Test Password: admin</p>
+        <mat-card-content style="padding: 0">
+          <form
+            [formGroup]="loginForm"
+            (ngSubmit)="onLoginFormSubmit()"
+            class="example-form"
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Enter your email" />
+
+              <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="email.hasError('required')"> Email is <strong>required</strong> </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput formControlName="password" placeholder="Enter your password" />
+              <mat-error *ngIf="password.hasError('required')"> Password is <strong>required</strong> </mat-error>
+            </mat-form-field>
+            <button mat-fab extended [disabled]="!loginForm.valid" color="primary" style="display: block; width: 100%">
+              Login
+            </button>
+            <p style="margin-top: 10px; align-content: center">
+              Don't have an account? <a href="#" (click)="enableFormHandler('isRegisterForm')">Sign Up</a>
+            </p>
+            <p style="margin-top: 30px; align-content: center">
+              <a
+                style="color: #000; font-size: 20px; text-decoration: none"
+                href="#"
+                (click)="enableFormHandler('isForgotPasswordForm')"
+              >
+                Forget Password &rarr;</a
+              >
+            </p>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- for password reset -->
+    <div style="flex-grow: 1" *ngIf="enableForms.isForgotPasswordForm">
+      <mat-card style="width: 400px; box-shadow: none">
+        <h1>Forgot your password?</h1>
+        <p style="color: gray">Don't worry we got you covered! We will send you an email with instructions.</p>
+        <mat-card-content style="padding: 0">
+          <form
+            [formGroup]="forgetPasswordForm"
+            (ngSubmit)="onLoginFormSubmit()"
+            class="example-form"
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email" placeholder="Enter your email" />
+
+              <mat-error *ngIf="forgotPasswordEmail.hasError('email') && !forgotPasswordEmail.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="forgotPasswordEmail.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <button
+              mat-fab
+              extended
+              [disabled]="!forgetPasswordForm.valid"
+              color="primary"
+              style="display: block; width: 100%"
+            >
+              Reset Password
+            </button>
+            <p style="margin-top: 30px; align-content: center">
+              <a
+                style="color: #000; font-size: 20px; text-decoration: none"
+                href="#"
+                (click)="enableFormHandler('isLoginForm')"
+              >
+                &larr; Go back to Login</a
+              >
+            </p>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- for register -->
+    <div style="flex-grow: 1" *ngIf="enableForms.isRegisterForm">
+      <mat-card style="width: 400px; box-shadow: none">
+        <h1>Hi! Create a new account</h1>
+        <mat-card-content style="padding: 0">
+          <form
+            [formGroup]="registerForm"
+            (ngSubmit)="onLoginFormSubmit()"
+            class="example-form"
+            style="display: flex; flex-direction: column; align-items: center"
+          >
+            <mat-form-field class="example-full-width">
+              <mat-label>Full Name</mat-label>
+              <input type="text" matInput formControlName="fullName" placeholder="Enter your full name" />
+              <mat-error *ngIf="fullName.hasError('required')"> Full name is <strong>required</strong> </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Company Name</mat-label>
+              <input type="text" matInput formControlName="companyName" placeholder="Enter your company name" />
+              <mat-error *ngIf="companyName.hasError('required')">
+                Company name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="registerEmail" placeholder="Enter your email" />
+
+              <mat-error *ngIf="registerEmail.hasError('email') && !email.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <mat-error *ngIf="registerEmail.hasError('required')"> Email is <strong>required</strong> </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput formControlName="registerPassword" placeholder="Enter your password" />
+              <mat-error *ngIf="registerPassword.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Repeat Password</mat-label>
+              <input
+                type="password"
+                matInput
+                formControlName="registerRepeatPassword"
+                placeholder="Enter your password again"
+              />
+              <mat-error *ngIf="registerRepeatPassword.hasError('required')">
+                Password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+            <mat-checkbox style="width: 100%" class="example-margin mb-20" [(ngModel)]="agreementChecked"
+              >Agree with our Terms & Policies</mat-checkbox
+            >
+            <button
+              mat-fab
+              extended
+              [disabled]="!registerForm.valid"
+              color="primary"
+              style="display: block; width: 100%"
+            >
+              Create Account
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div style="width: 55%">
     <img
-      mat-card-sm-image
-      style="margin: auto; width: 300px; height: 60px; margin-bottom: 20px"
-      src="../../../assets/images/company-logo.png"
+      style="width: 90%; height: 90%; margin: 0"
+      src="../../../assets/images/main image.png"
       alt="Photo of a Shiba Inu"
     />
-    <mat-card-content>
-      <form
-        [formGroup]="loginForm"
-        (ngSubmit)="onLoginFormSubmit()"
-        class="example-form"
-        style="display: flex; flex-direction: column; align-items: center"
-      >
-        <mat-form-field class="example-full-width">
-          <mat-label>Email</mat-label>
-          <input type="email" matInput formControlName="email" placeholder="Enter your email" />
-
-          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="email.hasError('required')"> Email is <strong>required</strong> </mat-error>
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <mat-label>Password</mat-label>
-          <input type="password" matInput formControlName="password" placeholder="Enter your password" />
-          <mat-error *ngIf="password.hasError('required')"> Password is <strong>required</strong> </mat-error>
-        </mat-form-field>
-        <a href="#" style="margin-bottom: 10px">Forgot your password?</a>
-        <button mat-fab extended [disabled]="!loginForm.valid" color="primary" style="display: block; width: 100%">
-          Login
-        </button>
-        <p style="margin-top: 10px; align-content: center">Don't have an account? <a href="#">Sign Up</a></p>
-      </form>
-    </mat-card-content>
-    <mat-card-actions> </mat-card-actions>
-  </mat-card>
+  </div>
 </div>
