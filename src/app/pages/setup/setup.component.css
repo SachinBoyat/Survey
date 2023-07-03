@@ -1,70 +1,71 @@
-.tab-card {
-  width: 288px;
-  height: 85px;
-  box-shadow: none;
+.preview-image-signature1 {
+  width: 80px;
+  height: 110px;
+  border-radius: 15px;
+  background-color: #f8f7f7;
 }
-
-.tab-card-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.tab-card-count {
-  height: 40px;
-  width: 40px;
-  border: 1px solid #00000066;
-  border-radius: 50px;
-  margin-left: 10px;
-}
-
-.tabs-hr {
-  border-bottom: 1px solid #bdbdbd;
-  max-width: 200px;
-  height: 1px;
-  width: 100px;
-  min-width: 50px;
-}
-
-.card-label {
-  width: 210px;
-  border-bottom: 2px solid #3b76ef;
-  color: #4b5a7a;
-}
-
-.preview-image {
-  width: 150px;
-  align-self: baseline;
-}
-
-.preview-image-signature {
-  width: 100px;
-  align-self: baseline;
-}
-
 .preview-image p,
+.preview-image-signature1 p,
 .preview-image-signature p {
   font-size: 12px;
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 0;
 }
 
-.font-color-type {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.abcd > div.mdc-form-field {
+  width: 100%;
 }
 
-:host ::ng-deep.agent-tab > mat-tab-header + div > mat-tab-body {
-  height: 170px;
+/* :host ::ng-deep.mat-mdc-tab-body-wrapper {
+  flex-grow: 1;
+} */
+
+:host ::ng-deep.widget-heading > div {
+  width: 100%;
+  display: flex;
+}
+
+:host ::ng-deep.widget-heading > div > label {
+  flex-grow: 1;
+}
+
+:host ::ng-deep.widget-heading > div > label .mat-mdc-form-field {
+  width: 90%;
+}
+
+.reaction-pack > div {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #cccccc;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.reaction-pack > div > span {
+  font-size: 24px;
+}
+
+.ready-btn {
+  background-color: #a3a3a3;
+  width: 100%;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+:host ::ng-deep.allow-user label.mdc-label {
+  font-size: 20px;
 }
 
 .btn-arrow {
-  border: 1px solid #3b76ef;
-  color: #3b76ef;
-  margin-left: 10px;
+  border: 1px solid #a3a3a3;
+  color: #a3a3a3;
+  font-size: 17px;
+  font-weight: 400;
+  width: 100%;
+  margin-top: 30px;
 }
 
-.first-row {
-  border-bottom: 1px solid #bdbdbd;
+:host ::ng-deep.google-int .mdc-button__label {
+  display: flex;
 }

@@ -12,8 +12,15 @@
     <mat-tab>
       <ng-template mat-tab-label>
         <div class="flex-c flex-col">
-          <mat-icon class="white-icon">edit</mat-icon>
-          <p class="menu-text">SETUP</p>
+          <p class="menu-text">Overview</p>
+        </div>
+      </ng-template>
+      <div></div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="flex-c flex-col">
+          <p class="menu-text">Customer Feedbacks</p>
         </div>
       </ng-template>
       <div>
@@ -22,21 +29,33 @@
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
-        <div class="flex-c flex-col mt-20">
-          <mat-icon class="white-icon">person</mat-icon>
-          <p class="menu-text">CUSTOMER FEEDBACK</p>
+        <div class="flex-c flex-col">
+          <p class="menu-text">Customer Reviews</p>
         </div>
       </ng-template>
-      <div><app-setup /></div>
+      <div>
+        <app-customer-feedback />
+      </div>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
-        <div class="flex-c flex-col mt-20">
-          <mat-icon class="white-icon">list</mat-icon>
-          <p class="menu-text">REPORTING</p>
+        <div class="flex-c flex-col">
+          <p class="menu-text">Survey Setup</p>
         </div>
       </ng-template>
-      <div>Content 2</div>
+      <div>
+        <app-setup />
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <div class="flex-c flex-col">
+          <p class="menu-text">Staff Member</p>
+        </div>
+      </ng-template>
+      <div>
+        <app-customer-feedback />
+      </div>
     </mat-tab>
   </mat-tab-group>
 </div>

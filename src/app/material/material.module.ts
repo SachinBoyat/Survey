@@ -11,6 +11,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const MaterialComponents: any = [
   MatCardModule,
@@ -25,6 +27,8 @@ const MaterialComponents: any = [
   MatSnackBarModule,
   MatTableModule,
   MatCheckboxModule,
+  MatRadioModule,
+  MatSlideToggleModule,
 ];
 
 @NgModule({
