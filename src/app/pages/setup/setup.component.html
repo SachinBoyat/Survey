@@ -46,13 +46,17 @@
       >
         <mat-radio-button value="2" style="width: 100%" class="widget-heading">
           <h2 style="font-weight: 400 !important">Create your own heading</h2>
-          <mat-form-field appearance="outline">
+          <!-- <mat-form-field appearance="outline">
             <mat-label>Type your heading</mat-label>
             <mat-select [(ngModel)]="selectedTitle" name="food">
               <mat-option *ngFor="let food of foods" [value]="food.value">
                 {{ food.viewValue }}
               </mat-option>
             </mat-select>
+          </mat-form-field> -->
+          <mat-form-field class="example-full-width">
+            <mat-label>Type your heading</mat-label>
+            <input type="password" matInput placeholder="Type your heading" />
           </mat-form-field>
         </mat-radio-button>
       </mat-card>
