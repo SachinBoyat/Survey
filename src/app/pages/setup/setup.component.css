@@ -69,3 +69,26 @@
 :host ::ng-deep.google-int .mdc-button__label {
   display: flex;
 }
+
+.staff-members {
+  width: 100px;
+  font-size: 18px;
+  text-align: end;
+  margin-right: 10px;
+}
+
+.three-circle {
+  background-image: url('../../../assets/images/three-circle.png');
+  width: 90px;
+  height: 45px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.three-circle > div {
+  color: #fff;
+  font-size: 16px;
+  height: 37px;
+  width: 37px;
+}

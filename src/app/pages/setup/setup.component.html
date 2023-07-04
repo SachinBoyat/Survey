@@ -1,4 +1,19 @@
-<h1 style="margin-bottom: 40px">Survey setup</h1>
+<div class="setup-container flex-sa" style="align-items: flex-start !important">
+  <div style="width: 35%">
+    <h1 style="margin-bottom: 60px">Survey Setup</h1>
+  </div>
+  <div style="width: 25%">
+    <h1 style="margin-bottom: 40px"></h1>
+  </div>
+  <div style="width: 30%">
+    <div class="flex" style="justify-content: end">
+      <p class="staff-members">Staff Members</p>
+      <div class="three-circle">
+        <div class="flex-c">+4</div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="setup-container flex-sa" style="align-items: flex-start !important">
   <div class="widget-preview" style="width: 35%">
     <h1>Widget Preview</h1>
@@ -46,14 +61,6 @@
       >
         <mat-radio-button value="2" style="width: 100%" class="widget-heading">
           <h2 style="font-weight: 400 !important">Create your own heading</h2>
-          <!-- <mat-form-field appearance="outline">
-            <mat-label>Type your heading</mat-label>
-            <mat-select [(ngModel)]="selectedTitle" name="food">
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{ food.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field> -->
           <mat-form-field class="example-full-width">
             <mat-label>Type your heading</mat-label>
             <input type="password" matInput placeholder="Type your heading" />

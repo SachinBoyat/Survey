@@ -41,41 +41,33 @@ export class StaticIconsDialog {
     {
       value: 1,
       icons: [
-        { text: 'Dissatisfied', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Satisfied', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Exceeded Expectations', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
       ],
     },
     {
       value: 1,
       icons: [
-        { text: 'Dissatisfied', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Satisfied', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Exceeded Expectations', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
       ],
     },
     {
       value: 1,
       icons: [
-        { text: 'Dissatisfied', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Satisfied', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Exceeded Expectations', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
       ],
     },
     {
       value: 1,
       icons: [
-        { text: 'Dissatisfied', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Satisfied', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Exceeded Expectations', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-      ],
-    },
-    {
-      value: 1,
-      icons: [
-        { text: 'Dissatisfied', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Satisfied', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Exceeded Expectations', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
       ],
     },
   ];
