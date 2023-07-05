@@ -1,148 +1,148 @@
-<div class="setup-container flex-sa" style="align-items: flex-start !important">
-  <div style="width: 35%">
-    <h1 style="margin-bottom: 60px">Survey Setup</h1>
-  </div>
-  <div style="width: 25%">
-    <h1 style="margin-bottom: 40px"></h1>
-  </div>
-  <div style="width: 30%">
-    <div class="flex" style="justify-content: end">
-      <p class="staff-members">Staff Members</p>
-      <div class="three-circle">
-        <div class="flex-c">+4</div>
+<div style="padding: 15px 45px">
+  <div class="setup-container flex-sa" style="align-items: flex-start !important">
+    <div style="width: 35%">
+      <h1 style="margin-bottom: 60px">Survey Setup</h1>
+    </div>
+    <div style="width: 25%">
+      <h1 style="margin-bottom: 40px"></h1>
+    </div>
+    <div style="width: 30%">
+      <div class="flex" style="justify-content: end">
+        <p class="staff-members">Staff Members</p>
+        <div class="three-circle">
+          <div class="flex-c">+4</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="setup-container flex-sa" style="align-items: flex-start !important">
-  <div class="widget-preview" style="width: 35%">
-    <h1>Widget Preview</h1>
-    <mat-card
-      class="shadow-none flex-c flex-col"
-      style="border: 1px solid #cccccc; padding: 20px 0 40px 0; border-radius: 15px"
-    >
-      <h2 style="font-weight: 500 !important">How would you rate my service?</h2>
-      <div class="flex-sa mt-10 w-100p">
-        <div class="preview-image-signature1 flex-c flex-col">
-          <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
-          <p>Negative</p>
-        </div>
-        <div class="preview-image-signature1 flex-c flex-col">
-          <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
-          <p>Normal</p>
-        </div>
-        <div class="preview-image-signature1 flex-c flex-col">
-          <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
-          <p>Positive</p>
-        </div>
-      </div>
-    </mat-card>
-    <h1 style="margin-top: 45px">Widget Setup</h1>
-    <mat-radio-group aria-label="Select an option" class="flex-c flex-col">
+  <div class="setup-container flex-sb" style="align-items: flex-start !important">
+    <div class="widget-preview" style="width: 35%">
+      <h1>Widget Preview</h1>
       <mat-card
         class="shadow-none flex-c flex-col"
-        style="border: 1px solid #cccccc; padding: 10px 0 0 0; border-radius: 15px; width: 100%"
+        style="border: 1px solid #cccccc; padding: 20px 0 40px 0; border-radius: 15px"
       >
-        <mat-radio-button value="1" style="width: 100%" class="widget-heading">
-          <h2 style="font-weight: 400 !important">Heading Variants</h2>
-          <mat-form-field appearance="outline">
-            <mat-label>Select a heading</mat-label>
-            <mat-select [(ngModel)]="selectedTitle" name="food">
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{ food.viewValue }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </mat-radio-button>
+        <h2 style="font-weight: 500 !important">How would you rate my service?</h2>
+        <div class="flex-sa mt-10 w-100p">
+          <div class="preview-image-signature1 flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
+            <p>Negative</p>
+          </div>
+          <div class="preview-image-signature1 flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
+            <p>Normal</p>
+          </div>
+          <div class="preview-image-signature1 flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
+            <p>Positive</p>
+          </div>
+        </div>
       </mat-card>
-      <mat-card
-        class="shadow-none flex-c flex-col"
-        style="border: 1px solid #cccccc; padding: 10px 0 0 0; margin-top: 45px; border-radius: 15px; width: 100%"
-      >
-        <mat-radio-button value="2" style="width: 100%" class="widget-heading">
-          <h2 style="font-weight: 400 !important">Create your own heading</h2>
-          <mat-form-field class="example-full-width">
-            <mat-label>Type your heading</mat-label>
-            <input type="password" matInput placeholder="Type your heading" />
-          </mat-form-field>
-        </mat-radio-button>
-      </mat-card>
-    </mat-radio-group>
-  </div>
-  <div class="select-reaction" style="width: 25%">
-    <h2 style="font-weight: 400 !important">Select Reaction Pack</h2>
-    <mat-card
-      (click)="openDialog('0ms', '0ms')"
-      class="shadow-none flex-c flex-col"
-      style="border: 1px solid #cccccc; padding: 15px; border-radius: 20px"
-    >
-      <div class="flex-sb mt-10 w-100p">
-        <div class="preview-image-signature flex-c flex-col">
-          <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
-        </div>
-        <div class="preview-image-signature flex-c flex-col">
-          <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
-        </div>
-        <div class="preview-image-signature flex-c flex-col">
-          <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
-        </div>
-      </div>
-    </mat-card>
-    <h2 style="font-weight: 400 !important; margin-top: 20px">Select Reaction Pack</h2>
-    <div class="flex-sb reaction-pack">
-      <div class="flex-c" style="background-color: #e5e5e5">
-        <span>3</span>
-      </div>
-      <div class="flex-c">
-        <span>4</span>
-      </div>
-      <div class="flex-c">
-        <span>5</span>
-      </div>
+      <h1 style="margin-top: 45px">Widget Setup</h1>
+      <mat-radio-group aria-label="Select an option" class="flex-c flex-col">
+        <mat-card
+          class="shadow-none flex-c flex-col"
+          style="border: 1px solid #cccccc; padding: 10px 0 0 0; border-radius: 15px; width: 100%"
+        >
+          <mat-radio-button value="1" style="width: 100%" class="widget-heading">
+            <h2 style="font-weight: 400 !important">Heading Variants</h2>
+            <mat-form-field appearance="outline">
+              <mat-select [(ngModel)]="selectedTitle" name="food">
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{ food.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-radio-button>
+        </mat-card>
+        <mat-card
+          class="shadow-none flex-c flex-col"
+          style="border: 1px solid #cccccc; padding: 10px 0 0 0; margin-top: 45px; border-radius: 15px; width: 100%"
+        >
+          <mat-radio-button value="2" style="width: 100%" class="widget-heading">
+            <h2 style="font-weight: 400 !important">Create your own heading</h2>
+            <mat-form-field class="example-full-width">
+              <input type="text" matInput placeholder="Type your heading" />
+            </mat-form-field>
+          </mat-radio-button>
+        </mat-card>
+      </mat-radio-group>
     </div>
-    <h1 style="margin-top: 45px">Ready for use</h1>
-    <mat-card class="shadow-none">
-      <mat-card-content class="flex-sb" style="padding: 0">
-        <div class="flex flex-col w-100p">
-          <div class="mt-10">
-            <a mat-fab extended routerLink="." class="ready-btn"> Copy to the Clipboard </a>
-            <p class="mt-10" style="color: #a3a3a3">Ready to paste into your signatures</p>
+    <div class="select-reaction" style="width: 25%">
+      <h2 style="font-weight: 400 !important">Select Reaction Pack</h2>
+      <mat-card
+        (click)="openDialog('0ms', '0ms')"
+        class="shadow-none flex-c flex-col"
+        style="border: 1px solid #cccccc; padding: 15px; border-radius: 20px"
+      >
+        <div class="flex-sb mt-10 w-100p">
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
           </div>
-          <div class="mt-20">
-            <a mat-fab extended routerLink="." class="ready-btn"> Copy the code </a>
-            <p class="mt-10" style="color: #a3a3a3">Copy html code to use it as you want</p>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
           </div>
-          <div class="mt-20">
-            <a mat-fab extended routerLink="." class="ready-btn">Share by mail </a>
-            <p class="mt-10" style="color: #a3a3a3">Share it by mail with your staff members</p>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
           </div>
         </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  <div class="options" style="width: 30%">
-    <h1>Options</h1>
-    <section class="example-section">
-      <mat-slide-toggle class="example-margin allow-user" [color]="color" [checked]="checked" [disabled]="disabled">
-        Allow user feedback &nbsp; &nbsp; &nbsp; &nbsp; 50%
-      </mat-slide-toggle>
-      <p style="color: #a3a3a3" class="mt-15">
-        By Default, the Survey Form requesting Customer Feedback, will display 100% of the time.
-      </p>
-    </section>
+      </mat-card>
+      <h2 style="font-weight: 400 !important; margin-top: 20px">Select Reaction Pack</h2>
+      <div class="flex-sb reaction-pack">
+        <div class="flex-c" style="background-color: #e5e5e5">
+          <span>3</span>
+        </div>
+        <div class="flex-c">
+          <span>4</span>
+        </div>
+        <div class="flex-c">
+          <span>5</span>
+        </div>
+      </div>
+      <h1 style="margin-top: 45px">Ready for use</h1>
+      <mat-card class="shadow-none">
+        <mat-card-content class="flex-sb" style="padding: 0">
+          <div class="flex flex-col w-100p">
+            <div class="mt-10">
+              <a mat-fab extended routerLink="." class="ready-btn"> Copy to the Clipboard </a>
+              <p class="mt-10" style="color: #a3a3a3">Ready to paste into your signatures</p>
+            </div>
+            <div class="mt-20">
+              <a mat-fab extended routerLink="." class="ready-btn"> Copy the code </a>
+              <p class="mt-10" style="color: #a3a3a3">Copy html code to use it as you want</p>
+            </div>
+            <div class="mt-20">
+              <a mat-fab extended routerLink="." class="ready-btn">Share by mail </a>
+              <p class="mt-10" style="color: #a3a3a3">Share it by mail with your staff members</p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="options" style="width: 30%">
+      <h1>Options</h1>
+      <section class="example-section">
+        <mat-slide-toggle class="example-margin allow-user" [color]="color" [checked]="checked" [disabled]="disabled">
+          Allow user feedback &nbsp; &nbsp; &nbsp; &nbsp; 50%
+        </mat-slide-toggle>
+        <p style="color: #a3a3a3" class="mt-15">
+          By Default, the Survey Form requesting Customer Feedback, will display 100% of the time.
+        </p>
+      </section>
 
-    <section class="example-section" style="margin-top: 70px">
-      <mat-slide-toggle class="example-margin allow-user" [color]="color" [checked]="checked" [disabled]="disabled">
-        Allow user review &nbsp; &nbsp; &nbsp; &nbsp; 50%
-      </mat-slide-toggle>
-      <p class="mt-15" style="color: #a3a3a3">
-        You can however choose to redirect positive Customer Feedback to your review site, increasing the number of
-        company Reviews and improvng your average Rating
-      </p>
-    </section>
-    <button mat-fab extended color="white" class="btn-arrow flex-c google-int">
-      <img src="../../../assets/images/Google-Icon.jpg" height="20" width="20" style="margin-right: 10px" />
-      <span>Integrate your site reviews</span>
-    </button>
+      <section class="example-section" style="margin-top: 70px">
+        <mat-slide-toggle class="example-margin allow-user" [color]="color" [checked]="checked" [disabled]="disabled">
+          Allow user review &nbsp; &nbsp; &nbsp; &nbsp; 50%
+        </mat-slide-toggle>
+        <p class="mt-15" style="color: #a3a3a3">
+          You can however choose to redirect positive Customer Feedback to your review site, increasing the number of
+          company Reviews and improvng your average Rating
+        </p>
+      </section>
+      <button mat-fab extended color="white" class="btn-arrow flex-c google-int">
+        <img src="../../../assets/images/Google-Icon.jpg" height="20" width="20" style="margin-right: 10px" />
+        <span style="font-size: 15px">Integrate your site reviews</span>
+      </button>
+    </div>
   </div>
 </div>

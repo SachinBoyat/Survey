@@ -92,12 +92,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
     staffMember: 'Mike Weiss',
   },
 ];
+
 @Component({
-  selector: 'app-customer-feedback',
-  templateUrl: './customer-feedback.component.html',
-  styleUrls: ['./customer-feedback.component.css'],
+  selector: 'app-customer-review',
+  templateUrl: './customer-review.component.html',
+  styleUrls: ['./customer-review.component.css'],
 })
-export class CustomerFeedbackComponent {
+export class CustomerReviewComponent {
   selectedTitle!: string;
 
   foods: any[] = [
