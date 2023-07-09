@@ -1,59 +1,105 @@
-<!-- Tab 2 content start -->
-<div class="add-agent-tab">
-  <div>
-    <p>BULK IMPORT(OPTIONAL)</p>
-    <mat-card class="shadow-none">
-      <mat-card-content>
-        <mat-tab-group mat-align-tabs="center" class="agent-tab">
-          <mat-tab label="IMPORT FROM EMAIL CLIENTS">
-            <div class="flex-c mt-20" style="gap: 60px">
-              <div class="email-clients" class="flex flex-col">
-                <h4 class="label">Select email client</h4>
-                <div class="flex">
-                  <div style="height: 90px; width: 130px">
-                    <img src="../../../assets/images/google-suit.png" class="h-100p w-100p" />
-                  </div>
-                  <div style="height: 90px; width: 130px">
-                    <img src="../../../assets/images/office-suit.png" class="h-100p w-100p" />
-                  </div>
-                </div>
-              </div>
-
-              <div style="align-self: baseline">
-                <h4 class="label">Are you a Global Admin?</h4>
-                <div>
-                  <mat-form-field style="width: 100px" appearance="outline">
-                    <mat-select [(ngModel)]="selectedAdminType" name="selectAdmin">
-                      <mat-option *ngFor="let admin of globalAdmin" [value]="admin.value">
-                        {{ admin.viewValue }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-
-              <button mat-fab extended color="white" class="btn-arrow">Connect</button>
-            </div>
-          </mat-tab>
-          <mat-tab label="IMPORT FROM CSV">
-            <div class="flex-c h-100p">
-              <div class="flex-c mt-20" style="gap: 30px">
-                <img src="../../../assets/images/csv upload.svg" />
-                <div>
-                  <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-                  <input hidden (change)="onFileSelected($event)" #fileInput type="file" />
-                  <span class="file-name ml-20">{{ selectedFile?.name }}</span>
-                </div>
-              </div>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
-      </mat-card-content>
-    </mat-card>
+<div style="padding: 15px 45px">
+  <div class="setup-container flex-sb" style="align-items: flex-start !important">
+    <div class="flex-sb">
+      <h1>Staff Members</h1>
+    </div>
+    <div>
+      <div class="flex" style="justify-content: end">
+        <p class="staff-members">Staff Members</p>
+        <div class="three-circle">
+          <div class="flex-c">+4</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="mt-40">
-    <p class="card-label">STAFF MEMBERS</p>
+  <div class="add-agent-tab">
+    <div>
+      <mat-card class="shadow-none">
+        <mat-card-content style="padding: 0">
+          <mat-tab-group mat-align-tabs="center" class="agent-tab">
+            <mat-tab label="IMPORT FROM EMAIL CLIENTS">
+              <div class="flex-c mt-20" style="gap: 60px">
+                <div class="email-clients" class="flex flex-col w-100p">
+                  <h4>Import Staff Members from Email</h4>
+                  <div class="flex-sb">
+                    <mat-radio-group class="agent-import-btn">
+                      <mat-radio-button value="1"
+                        ><img
+                          src="../../../assets/images/google-suit.png"
+                          style="width: 93%; height: 70px; margin-top: 8px"
+                      /></mat-radio-button>
+                      <mat-radio-button value="2" style="margin-left: 20px">
+                        <img
+                          src="../../../assets/images/office-suit.png"
+                          style="width: 93%; height: 70px; margin-top: 8px"
+                        />
+                      </mat-radio-button>
+                    </mat-radio-group>
+                    <button mat-fab extended color="primary" style="display: block">Create Account</button>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="IMPORT FROM CSV">
+              <div class="flex-c h-100p">
+                <div class="flex-c mt-20" style="gap: 30px">
+                  <img src="../../../assets/images/csv upload.svg" />
+                  <div>
+                    <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+                    <input hidden (change)="onFileSelected($event)" #fileInput type="file" />
+                    <span class="file-name ml-20">{{ selectedFile?.name }}</span>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="mt-40">
+      <div class="flex-sb">
+        <h3>Add Staff Members</h3>
+        <button mat-fab extended color="primary" style="display: block" (click)="openDialog()">Add Staff</button>
+      </div>
+      <div>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- customerName Column -->
+          <ng-container matColumnDef="fullName">
+            <th mat-header-cell *matHeaderCellDef>Full Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.fullName }}</td>
+          </ng-container>
+
+          <!-- rating Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+          </ng-container>
+
+          <!-- message Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+
+          <!-- id Column -->
+          <ng-container matColumnDef="isActive">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.isActive ? 'Active' : 'Inactive' }}</td>
+          </ng-container>
+
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <span>Options</span>
+            </th>
+            <td mat-cell *matCellDef="let row"><a href="#">Remove</a>&nbsp;&nbsp;<a href="#">Edit</a></td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
-<!-- Tab 2 content end -->

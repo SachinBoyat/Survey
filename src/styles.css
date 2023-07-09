@@ -148,6 +148,7 @@ body {
 .mat-mdc-extended-fab {
   height: 56px !important;
   border-radius: 40px !important;
+  padding: 0 20px !important;
 }
 
 /* for globally text input */
