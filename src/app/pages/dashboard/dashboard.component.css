@@ -38,10 +38,6 @@ mat-tab-body {
   color: #fff !important;
 }
 
-:host ::ng-deep.mdc-tab--active .white-icon {
-  color: #3b76ef !important;
-}
-
 :host ::ng-deep.left-menu > mat-tab-header > div > div .mat-mdc-tab-labels {
   flex-direction: column !important;
   height: 100vh;
@@ -88,7 +84,7 @@ mat-tab-body {
   display: none;
 }
 
-::ng-deep.mat-mdc-tab-label-container {
+::ng-deep.left-menu .mat-mdc-tab-label-container {
   padding-top: 100px;
   background-color: #e5e5e5;
 }

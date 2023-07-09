@@ -1,0 +1,32 @@
+<div mat-dialog-content style="width: 500px; height: 600px; max-height: 360px">
+  <div style="text-align: center">
+    <img
+      mat-card-sm-image
+      style="width: 100px; height: 30px; margin-bottom: 10px"
+      src="../../../assets/images/company-logo.png"
+      alt="Photo of a Shiba Inu"
+    />
+  </div>
+  <p style="text-align: center">Add Staff Members</p>
+  <mat-form-field style="width: 100%; margin: auto">
+    <mat-label>The name of your staff member</mat-label>
+    <input matInput [(ngModel)]="data.memberName" required />
+  </mat-form-field>
+  <mat-form-field style="width: 100%; margin: auto">
+    <mat-label>Place your staff member email</mat-label>
+    <input matInput [(ngModel)]="data.memberEmail" required />
+  </mat-form-field>
+  <div mat-dialog-actions class="flex-c">
+    <button
+      extended
+      mat-stroked-button
+      (click)="onNoClick()"
+      style="height: 56px; border-radius: 30px; margin-right: 20px; width: 100px"
+    >
+      Cancel
+    </button>
+    <button mat-fab extended [mat-dialog-close]="data.memberName" color="primary" style="display: block; width: 100px">
+      Add
+    </button>
+  </div>
+</div>

@@ -1,3 +1,97 @@
 :host ::ng-deep.agent-tab > mat-tab-header + div > mat-tab-body {
   height: 170px;
 }
+
+.staff-members {
+  width: 100px;
+  font-size: 18px;
+  text-align: end;
+  margin-right: 10px;
+}
+
+.three-circle {
+  background-image: url('../../../assets/images/three-circle.png');
+  width: 90px;
+  height: 45px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.three-circle > div {
+  color: #fff;
+  font-size: 16px;
+  height: 37px;
+  width: 37px;
+}
+
+::ng-deep.agent-tab .mat-mdc-tab-label-container {
+  padding-top: 20px;
+  background-color: #fff;
+}
+
+::ng-deep.agent-tab .mdc-tab--active .mdc-tab__content {
+  border-radius: 0;
+  background-color: #e5e5e5;
+}
+
+::ng-deep.agent-import-btn .mdc-form-field {
+  border: 1px solid gray;
+  padding: 0 10px;
+  border-radius: 15px;
+  height: 75px;
+}
+
+table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+th,
+td {
+  font-size: 18px;
+}
+
+.mat-mdc-table .mdc-data-table__row {
+  height: 75px !important;
+}
+
+.mat-mdc-header-row {
+  background-color: #d9d9d9;
+}
+
+.mat-column-fullName,
+.mat-column-id,
+.mat-column-email,
+.mat-column-isActive {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.mat-column-fullName {
+  width: 15% !important;
+}
+
+.mat-column-id {
+  width: 10% !important;
+}
+
+.mat-column-email {
+  width: 25% !important;
+}
+
+.mat-column-isActive {
+  width: 20% !important;
+}
+
+.mat-column-select {
+  width: 20% !important;
+}
