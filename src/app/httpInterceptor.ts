@@ -10,15 +10,15 @@ export class HttpRequestInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.getoken();
-    // if (!req.headers.has("Content-Type")) {
-    //   req = req.clone({
-    //     headers: req.headers.set("Content-Type", "application/json")
-    //   });
-    // }
+    if (!req.headers.has("Content-Type")) {
+      req = req.clone({
+        headers: req.headers.set("Content-Type", "application/json")
+      });
+    }
     req = req.clone({
       url: req.url,
       setHeaders: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token?.slice(1, -1)}`
       }
     });
     return next.handle(req);

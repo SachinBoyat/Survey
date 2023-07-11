@@ -1,26 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ThemePalette } from '@angular/material/core';
+import { SurveyService } from 'src/app/services/survey.service';
+import { JWTTokenService } from 'src/app/services/jwttoken.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-setup',
   templateUrl: './setup.component.html',
   styleUrls: ['./setup.component.css'],
 })
-export class SetupComponent {
+export class SetupComponent implements OnInit {
   selectedTitle!: string;
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
-
+  public orgnizatioId:string="";
+  public userTokenData:any;
   foods: any[] = [
     { value: 'steak-0', viewValue: 'Steak' },
     { value: 'pizza-1', viewValue: 'Pizza' },
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
 
-  constructor(public dialog: MatDialog) {}
-
+  constructor(public dialog: MatDialog,private surveyService:SurveyService,private auth:AuthService) {}
+  ngOnInit() {
+    this.userTokenData=this.auth.decodeToken();
+    this.bindDropDown();
+  }
+  bindDropDown(){
+    this.surveyService.getDropDown(this.userTokenData.OrganizationId).subscribe(res=>{
+      console.log(res);
+    })
+  }
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(StaticIconsDialog, {
       width: '470px',
@@ -28,6 +40,9 @@ export class SetupComponent {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+  ngOnDestroy(){
+    console.log("destroying child...")
   }
 }
 
@@ -73,4 +88,5 @@ export class StaticIconsDialog {
   ];
 
   constructor(public dialogRef: MatDialogRef<StaticIconsDialog>) {}
+  
 }

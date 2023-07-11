@@ -28,7 +28,9 @@ export class AuthService {
   registerUser(data: any): Observable<any> {
     return this.httpClient.post(`${this.servierUrl}/Organization/CreateOrganizationAndUser`, data);
   }
-
+  forgotPassword(email:string): Observable<any> {
+    return this.httpClient.get(`${this.servierUrl}/User/ForgetPassword?email=${email}`);
+  }
   loginUser(data: any): Observable<any> {
     return this.httpClient.post(`${this.servierUrl}/User/Login`, data)
       .pipe(tap((data:any) => {
