@@ -114,7 +114,21 @@ export class LoginComponent implements OnInit {
       })
     );
   }
+  onforgetFormSubmit(){
+    this.authService.forgotPassword(this.forgotPasswordEmail).subscribe(data => {
 
+      if (data) {
+        this.toastr.success("Forget Password sent successfully on your email id", Constant.shared.sucess)
+      } else {
+        this.toastr.error(Constant.shared.invalidEmail, Constant.shared.error);
+      }
+    },
+      catchError((error) => {
+        this.toastr.error(Constant.shared.invalidEmail, Constant.shared.error);
+        return throwError(() => error);
+      })
+    );
+  }
   ngOnInit() { }
 
   enableFormHandler(formType: string): void {
@@ -125,5 +139,9 @@ export class LoginComponent implements OnInit {
         this.enableForms[cForm] = false;
       }
     }
+  }
+  ngOnDestroy(){
+    
+    console.log("destroying child...")
   }
 }

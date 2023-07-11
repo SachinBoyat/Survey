@@ -14,8 +14,9 @@ import { StaffMemberComponent } from './pages/staff-member/staff-member.componen
 import { OverviewComponent } from './pages/overview/overview.component';
 import { CustomerReviewComponent } from './pages/customer-review/customer-review.component';
 import { AuthenticationGuard } from './authentication.guard';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpRequestInterceptor } from './httpInterceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, FormsModule, ReactiveFormsModule,HttpClientModule,
     ToastrModule.forRoot()],
-  providers: [AuthenticationGuard],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpRequestInterceptor,
+    multi: true
+},AuthenticationGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

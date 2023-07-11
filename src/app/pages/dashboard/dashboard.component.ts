@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+import { SurveyService } from 'src/app/services/survey.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 export class DashboardComponent {
   durationInSeconds = 5;
 
-  constructor(private _snackBar: MatSnackBar) {
+  constructor(private _snackBar: MatSnackBar,private surveyService:SurveyService) {
     // this.openSnackBar();
   }
 
