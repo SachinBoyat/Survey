@@ -116,9 +116,7 @@
       <mat-card style="width: 400px; box-shadow: none">
         <h1>Hi! Create a new account</h1>
         <mat-card-content style="padding: 0">
-          <form
-            [formGroup]="registerForm"
-            (ngSubmit)="onLoginFormSubmit()"
+          <form [formGroup]="registerForm"
             class="example-form"
             style="display: flex; flex-direction: column; align-items: center"
           >
@@ -170,7 +168,7 @@
               extended
               [disabled]="!registerForm.valid"
               color="primary"
-              style="display: block; width: 100%"
+              style="display: block; width: 100%" (click)="onRegisterFormSubmit(registerForm.value)"
             >
               Create Account
             </button>

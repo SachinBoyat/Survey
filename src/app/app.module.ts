@@ -13,6 +13,9 @@ import { CustomerFeedbackComponent } from './pages/customer-feedback/customer-fe
 import { StaffMemberComponent } from './pages/staff-member/staff-member.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { CustomerReviewComponent } from './pages/customer-review/customer-review.component';
+import { AuthenticationGuard } from './authentication.guard';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,9 @@ import { CustomerReviewComponent } from './pages/customer-review/customer-review
     OverviewComponent,
     CustomerReviewComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, FormsModule, ReactiveFormsModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, FormsModule, ReactiveFormsModule,HttpClientModule,
+    ToastrModule.forRoot()],
+  providers: [AuthenticationGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

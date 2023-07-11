@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { catchError, throwError } from 'rxjs';
+import { Constant } from 'src/app/Constant';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -14,7 +18,6 @@ export class LoginComponent implements OnInit {
     isForgotPasswordForm: false,
     isRegisterForm: false,
   };
-
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -64,15 +67,55 @@ export class LoginComponent implements OnInit {
     return this.registerForm.get('registerRepeatPassword');
   }
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private toastr: ToastrService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   onLoginFormSubmit() {
-    if (this.loginForm.value.email === 'admin@admin.com' && this.loginForm.value.password === 'admin') {
-      this.router.navigate(['/', 'dashboard']);
+    var loginobj = {
+      "email": this.loginForm.value.email,
+      "password": this.loginForm.value.password
     }
+    this.authService.loginUser(loginobj).subscribe(data => {
+
+      if (!data) {
+        this.router.navigate(['/']);
+      } else {
+        this.router.navigate(['dashboard']);
+      }
+    },
+      catchError((error) => {
+        this.toastr.error(Constant.shared.invalidPassword, Constant.shared.error);
+        return throwError(() => error);
+      })
+    );
+    // if (this.loginForm.value.email === 'admin@admin.com' && this.loginForm.value.password === 'admin') {
+    //   this.router.navigate(['/', 'dashboard']);
+    // }
+  }
+  onRegisterFormSubmit(val:any) {
+    var registerobj = {
+      "userName": this.registerForm.value.fullName,
+      "organizationName": this.registerForm.value.companyName,
+      "email": this.registerForm.value.registerEmail,
+      "password": this.registerForm.value.registerPassword,
+      "address": "",
+      "phoneNumber": "",
+      "status": 1
+    }
+    this.authService.registerUser(registerobj).subscribe((data: any) => {
+      
+        this.toastr.success(Constant.shared.successfullyRefistered, Constant.shared.sucess)
+        this.router.navigate(['login']);
+      
+    },
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   enableFormHandler(formType: string): void {
     for (let cForm in this.enableForms) {
