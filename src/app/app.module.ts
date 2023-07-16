@@ -17,6 +17,7 @@ import { AuthenticationGuard } from './authentication.guard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpRequestInterceptor } from './httpInterceptor';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -30,13 +31,25 @@ import { HttpRequestInterceptor } from './httpInterceptor';
     OverviewComponent,
     CustomerReviewComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MaterialModule, FormsModule, ReactiveFormsModule,HttpClientModule,
-    ToastrModule.forRoot()],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpRequestInterceptor,
-    multi: true
-},AuthenticationGuard],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgChartsModule,
+    ToastrModule.forRoot(),
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true,
+    },
+    AuthenticationGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
