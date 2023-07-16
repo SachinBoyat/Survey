@@ -67,4 +67,48 @@
       </div>
     </div>
   </div>
+
+  <div>
+    <div class="flex-sb" style="margin-top: 50px">
+      <div style="display: block; width: 70%; background-color: #e5e5e5; border-radius: 10px">
+        <canvas
+          style="height: 500px; width: 700px; padding: 20px"
+          baseChart
+          class="chart"
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="barChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"
+        >
+        </canvas>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; width: 25%">
+        <div style="height: 133px; width: 200px; position: relative; margin-left: -85px">
+          <div class="vertical" style="position: absolute">
+            <p style="margin: 0">Positive</p>
+            <progress class="gray" style="height: 40px" id="file" value="32" max="100">32%</progress>
+          </div>
+          <div class="vertical" style="position: absolute; left: 60px">
+            <p style="margin: 0">Normal</p>
+            <progress class="gray" style="height: 40px" id="file" value="32" max="100">62%</progress>
+          </div>
+          <div class="vertical" style="position: absolute; left: 120px">
+            <p style="margin: 0">Negative</p>
+            <progress class="gray" style="height: 40px" id="file" value="32" max="100">52%</progress>
+          </div>
+        </div>
+        <div>
+          <canvas
+            style="height: 270px; width: 270px; margin-top: 20px"
+            baseChart
+            class="chart"
+            [data]="doughnutChartData"
+            [type]="doughnutChartType"
+          >
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
