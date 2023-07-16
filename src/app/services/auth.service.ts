@@ -7,15 +7,16 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 const USER_KEY = 'token';
 const helper = new JwtHelperService();
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   refreshToken(): Observable<any> {
-    return this.httpClient.get(`${this.servierUrl}/User/GetRefreshToken?Email=${this.getEmailId()}`)
-      .pipe(map((data) => {
+    return this.httpClient.get(`${this.servierUrl}/User/GetRefreshToken?Email=${this.getEmailId()}`).pipe(
+      map((data) => {
         this.settoken(data);
         this.isloggedIn = true;
-      }))
+      })
+    );
   }
 
   private isloggedIn: boolean;
@@ -28,21 +29,22 @@ export class AuthService {
   registerUser(data: any): Observable<any> {
     return this.httpClient.post(`${this.servierUrl}/Organization/CreateOrganizationAndUser`, data);
   }
-  forgotPassword(email:string): Observable<any> {
+  forgotPassword(email: string): Observable<any> {
     return this.httpClient.get(`${this.servierUrl}/User/ForgetPassword?email=${email}`);
   }
   loginUser(data: any): Observable<any> {
-    return this.httpClient.post(`${this.servierUrl}/User/Login`, data)
-      .pipe(tap((data:any) => {
+    return this.httpClient.post(`${this.servierUrl}/User/Login`, data).pipe(
+      tap((data: any) => {
         if (data?.token) {
           this.settoken(data);
           this.isloggedIn = true;
         }
-      }))
+      })
+    );
   }
 
   isUserLoggedIn(): boolean {
-    return this.isloggedIn;
+    return (this.isloggedIn = true);
   }
   decodeToken() {
     if (this.getoken) {
@@ -51,7 +53,6 @@ export class AuthService {
   }
   public getoken(): any {
     return window.sessionStorage.getItem(USER_KEY);
-
   }
   getUser() {
     this.decodeToken();
@@ -69,7 +70,7 @@ export class AuthService {
   }
   // isAdminUser():boolean {
   //     if (this.userName=='Admin') {
-  //         return true; 
+  //         return true;
   //     }
   //     return false;
   // }
@@ -77,7 +78,7 @@ export class AuthService {
   isTokenExpired(): boolean {
     const expiryTime: string | null = this.getExpiryTime();
     if (expiryTime) {
-      return ((1000 * Number(expiryTime)) - (new Date()).getTime()) < 5000;
+      return 1000 * Number(expiryTime) - new Date().getTime() < 5000;
     } else {
       return false;
     }

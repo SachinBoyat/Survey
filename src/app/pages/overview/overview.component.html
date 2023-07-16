@@ -1,0 +1,70 @@
+<div style="padding: 15px 45px">
+  <div class="setup-container flex-sa" style="align-items: flex-start !important">
+    <div style="width: 25%">
+      <h1 style="margin-top: 10px">Overview Ratings</h1>
+    </div>
+    <div style="width: 45%" class="flex">
+      <button mat-fab extended color="primary" style="display: block; width: 40%; height: 50px !important">
+        Show Feedbacks
+      </button>
+      <button
+        mat-fab
+        extended
+        disabled=""
+        color="primary"
+        class="ml-15"
+        style="display: block; width: 40%; height: 50px !important"
+      >
+        Show Reviews
+      </button>
+    </div>
+    <div style="width: 30%">
+      <div class="flex" style="justify-content: end">
+        <p class="staff-members">Staff Members</p>
+        <div class="three-circle">
+          <div class="flex-c">+4</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 60px">
+    <div class="list-options flex-sb">
+      <div class="flex flex-col" style="flex-grow: 1">
+        <h2 style="font-weight: 400 !important">Filter by Rating</h2>
+        <div class="flex" style="margin-left: -10px">
+          <mat-checkbox class="example-margin">Show All</mat-checkbox
+          ><mat-checkbox class="example-margin">Positive</mat-checkbox
+          ><mat-checkbox class="example-margin">Normal</mat-checkbox
+          ><mat-checkbox class="example-margin">Negative</mat-checkbox>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div class="flex flex-col ml-20" style="width: 250px">
+          <h2 style="font-weight: 400 !important">Filter by Staff</h2>
+          <mat-form-field appearance="outline" class="flex-row">
+            <mat-label>Select a Staff Member</mat-label>
+            <mat-select [(ngModel)]="selectedTitle" name="food">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="flex flex-col ml-20" style="width: 200px">
+          <h2 style="font-weight: 400 !important">Filter by Time Range</h2>
+          <mat-form-field appearance="outline" class="flex-row">
+            <mat-label>Weekly</mat-label>
+            <mat-select [(ngModel)]="selectedTitle" name="food">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{ food.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

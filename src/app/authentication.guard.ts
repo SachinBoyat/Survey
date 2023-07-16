@@ -4,27 +4,23 @@ import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthenticationGuard implements CanActivate {
-  constructor(private router:Router, private authService: AuthService ) {
- 
-  }
+  constructor(private router: Router, private authService: AuthService) {}
 
-  canActivate(route: ActivatedRouteSnapshot,
-              state: RouterStateSnapshot): boolean|UrlTree {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+    if (!this.authService.isUserLoggedIn()) {
+      // alert('You are not allowed to view this page. You are redirected to login Page');
 
-      if (!this.authService.isUserLoggedIn()) {
-          alert('You are not allowed to view this page. You are redirected to login Page');
-          
-          this.router.navigate(["/"],{ queryParams: { retUrl: route.url} });
-          return false;
+      this.router.navigate(['/'], { queryParams: { retUrl: route.url } });
+      return false;
 
-          //var urlTree = this.router.createUrlTree(['login']);
-          //return urlTree;
-      } 
+      //var urlTree = this.router.createUrlTree(['login']);
+      //return urlTree;
+    }
 
-      return true;
+    return true;
   }
   //constructor(private router: Router) {
 
