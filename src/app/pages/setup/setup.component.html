@@ -22,21 +22,45 @@
         class="shadow-none flex-c flex-col"
         style="border: 1px solid #cccccc; padding: 20px 0 40px 0; border-radius: 15px"
       >
-        <h2 style="font-weight: 500 !important">How would you rate my service?</h2>
-        <div class="flex-sa mt-10 w-100p">
-          <div class="preview-image-signature1 flex-c flex-col">
-            <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
-            <p>Negative</p>
-          </div>
-          <div class="preview-image-signature1 flex-c flex-col">
-            <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
-            <p>Normal</p>
-          </div>
-          <div class="preview-image-signature1 flex-c flex-col">
-            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
-            <p>Positive</p>
-          </div>
+        <h2 style="font-weight: 500 !important">
+          {{ previewSurveyData.title.length ? previewSurveyData.title : headingVariant[0]?.name }}
+        </h2>
+        <div
+          *ngIf="
+            previewSurveyData.reactionPack === 0 && previewSurveyData.iconSetId === 0;
+            then content;
+            else other_content
+          "
+        >
+          here is ignored
         </div>
+        <ng-template #content>
+          <div class="flex-sa mt-10 w-100p">
+            <div class="preview-image-signature1 flex-c flex-col">
+              <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
+              <p>Negative</p>
+            </div>
+            <div class="preview-image-signature1 flex-c flex-col">
+              <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
+              <p>Normal</p>
+            </div>
+            <div class="preview-image-signature1 flex-c flex-col">
+              <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
+              <p>Positive</p>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #other_content>
+          <div class="flex-sa mt-10 w-100p">
+            <div
+              class="preview-image-signature1 flex-c flex-col"
+              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
+            >
+              <img src="{{ icon.url }}" height="50" width="50" />
+              <p>Negative</p>
+            </div>
+          </div>
+        </ng-template>
       </mat-card>
       <h1 style="margin-top: 45px">Widget Setup</h1>
       <mat-radio-group aria-label="Select an option" class="flex-c flex-col">
@@ -44,12 +68,21 @@
           class="shadow-none flex-c flex-col"
           style="border: 1px solid #cccccc; padding: 10px 0 0 0; border-radius: 15px; width: 100%"
         >
-          <mat-radio-button value="1" style="width: 100%" class="widget-heading">
+          <mat-radio-button
+            value="1"
+            [checked]="previewSurveyData.headingType === 1"
+            style="width: 100%"
+            class="widget-heading"
+          >
             <h2 style="font-weight: 400 !important">Heading Variants</h2>
             <mat-form-field appearance="outline">
-              <mat-select [(ngModel)]="selectedTitle" name="food">
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                  {{ food.viewValue }}
+              <mat-select [(ngModel)]="previewSurveyData.title" name="food">
+                <mat-option
+                  *ngFor="let heading of headingVariant"
+                  [value]="heading.name"
+                  (click)="variantHeadingeHandler(heading)"
+                >
+                  {{ heading.name }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -59,10 +92,21 @@
           class="shadow-none flex-c flex-col"
           style="border: 1px solid #cccccc; padding: 10px 0 0 0; margin-top: 45px; border-radius: 15px; width: 100%"
         >
-          <mat-radio-button value="2" style="width: 100%" class="widget-heading">
+          <mat-radio-button
+            value="2"
+            [checked]="previewSurveyData.headingType === 2"
+            style="width: 100%"
+            class="widget-heading"
+          >
             <h2 style="font-weight: 400 !important">Create your own heading</h2>
             <mat-form-field class="example-full-width">
-              <input type="text" matInput placeholder="Type your heading" />
+              <input
+                type="text"
+                #customeHeadingInput
+                matInput
+                (input)="customHeadingeHandler(customeHeadingInput.value)"
+                placeholder="Type your heading"
+              />
             </mat-form-field>
           </mat-radio-button>
         </mat-card>
@@ -71,31 +115,77 @@
     <div class="select-reaction" style="width: 25%">
       <h2 style="font-weight: 400 !important">Select Reaction Pack</h2>
       <mat-card
-        (click)="openDialog('0ms', '0ms')"
+        *ngIf="selectedPack[0].isSelected"
+        (click)="openDialog('0ms', '0ms', 0, reactionPackItems[0])"
         class="shadow-none flex-c flex-col"
         style="border: 1px solid #cccccc; padding: 15px; border-radius: 20px"
       >
         <div class="flex-sb mt-10 w-100p">
           <div class="preview-image-signature flex-c flex-col">
-            <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
+            <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="45" width="45" />
           </div>
           <div class="preview-image-signature flex-c flex-col">
-            <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
+            <img src="../../../assets/images/survey-images/Satisfied.gif" height="45" width="45" />
           </div>
           <div class="preview-image-signature flex-c flex-col">
-            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="45" width="45" />
+          </div>
+        </div>
+      </mat-card>
+      <mat-card
+        *ngIf="selectedPack[1].isSelected"
+        (click)="openDialog('0ms', '0ms', 1, reactionPackItems[1])"
+        class="shadow-none flex-c flex-col"
+        style="border: 1px solid #cccccc; padding: 15px; border-radius: 20px"
+      >
+        <div class="flex-sb mt-10 w-100p">
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="45" width="45" />
+          </div>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Satisfied.gif" height="45" width="45" />
+          </div>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="45" width="45" />
+          </div>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="45" width="45" />
+          </div>
+        </div>
+      </mat-card>
+      <mat-card
+        *ngIf="selectedPack[2].isSelected"
+        (click)="openDialog('0ms', '0ms', 2, reactionPackItems[2])"
+        class="shadow-none flex-c flex-col"
+        style="border: 1px solid #cccccc; padding: 15px 5px; border-radius: 20px"
+      >
+        <div class="flex-sb mt-10 w-100p">
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="45" width="45" />
+          </div>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Satisfied.gif" height="45" width="45" />
+          </div>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="45" width="45" />
+          </div>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="45" width="45" />
+          </div>
+          <div class="preview-image-signature flex-c flex-col">
+            <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="45" width="45" />
           </div>
         </div>
       </mat-card>
       <h2 style="font-weight: 400 !important; margin-top: 20px">Select Reaction Pack</h2>
       <div class="flex-sb reaction-pack">
-        <div class="flex-c" style="background-color: #e5e5e5">
+        <div class="flex-c" [ngClass]="{ 'packcount-bg': selectedPack[0].isSelected }" (click)="packCountHandler(0)">
           <span>3</span>
         </div>
-        <div class="flex-c">
+        <div class="flex-c" [ngClass]="{ 'packcount-bg': selectedPack[1].isSelected }" (click)="packCountHandler(1)">
           <span>4</span>
         </div>
-        <div class="flex-c">
+        <div class="flex-c" [ngClass]="{ 'packcount-bg': selectedPack[2].isSelected }" (click)="packCountHandler(2)">
           <span>5</span>
         </div>
       </div>

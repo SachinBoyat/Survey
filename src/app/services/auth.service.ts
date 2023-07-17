@@ -12,7 +12,7 @@ const helper = new JwtHelperService();
 export class AuthService {
   refreshToken(): Observable<any> {
     return this.httpClient.get(`${this.servierUrl}/User/GetRefreshToken?Email=${this.getEmailId()}`).pipe(
-      map((data) => {
+      map(data => {
         this.settoken(data);
         this.isloggedIn = true;
       })
@@ -36,6 +36,7 @@ export class AuthService {
     return this.httpClient.post(`${this.servierUrl}/User/Login`, data).pipe(
       tap((data: any) => {
         if (data?.token) {
+          console.log('loggedIn data: ', data);
           this.settoken(data);
           this.isloggedIn = true;
         }
@@ -52,7 +53,7 @@ export class AuthService {
     }
   }
   public getoken(): any {
-    return window.sessionStorage.getItem(USER_KEY);
+    return window.localStorage.getItem(USER_KEY);
   }
   getUser() {
     this.decodeToken();
@@ -85,7 +86,7 @@ export class AuthService {
   }
 
   public settoken(user: any): void {
-    window.sessionStorage.removeItem(USER_KEY);
-    window.sessionStorage.setItem(USER_KEY, JSON.stringify(user.token));
+    window.localStorage.removeItem(USER_KEY);
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user.token));
   }
 }

@@ -1,17 +1,32 @@
 <mat-card class="shadow-none">
   <mat-card-content class="flex-c flex-col">
-    <div class="flex-sa mt-10 w-100p" *ngFor="let icon of staticIcons">
+    <div
+      class="flex-sa mt-10 w-100p reactionPackImg"
+      *ngFor="let icon of data.packData; let i = index"
+      [mat-dialog-close]="{ reactionPack: data.packCount, iconSetId: i }"
+      [ngClass]="{
+        'reaction-pack-bg': data.packCount === data.selectedData.reactionPack && i === data.selectedData.iconSetId
+      }"
+    >
       <div class="preview-image flex-c flex-col">
-        <img [src]="icon.icons[0].url" height="50" width="50" />
+        <img [src]="icon.icons[0].url" height="45" width="45" />
         <p>{{ icon.icons[0].text }}</p>
       </div>
       <div class="preview-image flex-c flex-col">
-        <img [src]="icon.icons[1].url" height="50" width="50" />
+        <img [src]="icon.icons[1].url" height="45" width="45" />
         <p>{{ icon.icons[1].text }}</p>
       </div>
       <div class="preview-image flex-c flex-col">
-        <img [src]="icon.icons[2].url" height="50" width="50" />
+        <img [src]="icon.icons[2].url" height="45" width="45" />
         <p>{{ icon.icons[2].text }}</p>
+      </div>
+      <div *ngIf="data.packCount === 1 || data.packCount === 2" class="preview-image flex-c flex-col">
+        <img [src]="icon.icons[2].url" height="45" width="45" />
+        <p>{{ icon.icons[3].text }}</p>
+      </div>
+      <div *ngIf="data.packCount === 2" class="preview-image flex-c flex-col">
+        <img [src]="icon.icons[2].url" height="45" width="45" />
+        <p>{{ icon.icons[4].text }}</p>
       </div>
     </div>
   </mat-card-content>
