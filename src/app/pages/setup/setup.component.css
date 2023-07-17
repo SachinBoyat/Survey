@@ -92,3 +92,15 @@
   height: 37px;
   width: 37px;
 }
+
+.packcount-bg {
+  background-color: #e5e5e5;
+}
+
+.reaction-pack-img:hover {
+  background-color: gainsboro;
+}
+
+.reaction-pack-bg {
+  background-color: gainsboro;
+}

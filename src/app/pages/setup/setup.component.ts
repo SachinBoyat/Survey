@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ThemePalette } from '@angular/material/core';
 import { SurveyService } from 'src/app/services/survey.service';
 import { JWTTokenService } from 'src/app/services/jwttoken.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-setup',
@@ -12,37 +13,237 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SetupComponent implements OnInit {
   selectedTitle!: string;
+  customHeading: string = '';
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
-  public orgnizatioId:string="";
-  public userTokenData:any;
-  foods: any[] = [
-    { value: 'steak-0', viewValue: 'Steak' },
-    { value: 'pizza-1', viewValue: 'Pizza' },
-    { value: 'tacos-2', viewValue: 'Tacos' },
+  headingVariant: any[] = [];
+  orgnizatioId: string = '';
+  userTokenData: any;
+  selectedPack: any = [
+    { reactionPack: 0, isSelected: true },
+    { reactionPack: 1, isSelected: false },
+    { reactionPack: 2, isSelected: false },
   ];
 
-  constructor(public dialog: MatDialog,private surveyService:SurveyService,private auth:AuthService) {}
-  ngOnInit() {
-    this.userTokenData=this.auth.decodeToken();
-    this.bindDropDown();
+  // default survey data
+  previewSurveyData: any = {
+    _id: '',
+    organizationId: '',
+    title: '',
+    fontSize: '',
+    fontFamily: '',
+    isRecationOff: true,
+    isReviewOff: true,
+    fontColor: '',
+    language: '',
+    reactionPack: 0,
+    headingType: 1,
+    iconSetId: 0,
+    createdBy: '',
+    createdDate: new Date(),
+    lastModifiedBy: new Date(),
+    lastModifiedDate: new Date(),
+  };
+
+  reactionPackItems: any[] = [
+    [
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+    ],
+    [
+      {
+        value: 2,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+    ],
+    [
+      {
+        value: 3,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+      {
+        value: 1,
+        icons: [
+          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
+          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+        ],
+      },
+    ],
+  ];
+
+  constructor(public dialog: MatDialog, private surveyService: SurveyService, private auth: AuthService) {
+    this.userTokenData = this.auth.decodeToken();
+    this.previewSurveyData.organizationId = this.userTokenData.OrganizationId;
+    // override the default survery data
+    this.surveyService.getSurveyByOrgId(this.userTokenData.OrganizationId).subscribe(res => {
+      if (res.length) {
+        this.previewSurveyData = res[0];
+
+        for (let reactCount of this.selectedPack) {
+          reactCount.isSelected = false;
+        }
+        this.selectedPack[res[0].reactionPack].isSelected = true;
+      }
+    });
+    // get the heading variant
+    this.surveyService.getDropDown(this.userTokenData.OrganizationId).subscribe(res => {
+      this.headingVariant = res;
+    });
   }
-  bindDropDown(){
-    this.surveyService.getDropDown(this.userTokenData.OrganizationId).subscribe(res=>{
-      console.log(res);
-    })
-  }
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(StaticIconsDialog, {
+  ngOnInit() {}
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string, packCount: number, packData: any[]): void {
+    let dialogRef = this.dialog.open(StaticIconsDialog, {
       width: '470px',
       height: '500px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: {
+        packCount,
+        packData,
+        selectedData: {
+          reactionPack: this.previewSurveyData.reactionPack,
+          iconSetId: this.previewSurveyData.iconSetId,
+        },
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      // received data from dialog-component
+      if (res) {
+        this.previewSurveyData.reactionPack = res.reactionPack;
+        this.previewSurveyData.iconSetId = res.iconSetId;
+        this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
+          if (res) {
+            this.previewSurveyData = res;
+
+            for (let reactCount of this.selectedPack) {
+              reactCount.isSelected = false;
+            }
+            this.selectedPack[res.reactionPack].isSelected = true;
+          }
+        });
+      }
     });
   }
-  ngOnDestroy(){
-    console.log("destroying child...")
+  ngOnDestroy() {}
+
+  customHeadingeHandler(val: string) {
+    this.previewSurveyData.headingType = 2;
+    this.previewSurveyData.title = val;
+    this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
+      if (res) this.previewSurveyData = res;
+    });
+  }
+
+  variantHeadingeHandler(selectedOption: any) {
+    this.previewSurveyData.headingType = 1;
+    this.previewSurveyData.title = selectedOption.name;
+    this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
+      if (res) this.previewSurveyData = res;
+    });
+  }
+
+  packCountHandler(count: number) {
+    for (let reactCount of this.selectedPack) {
+      if (reactCount.reactionPack === count) {
+        reactCount.isSelected = true;
+      } else {
+        reactCount.isSelected = false;
+      }
+    }
   }
 }
 
@@ -52,41 +253,14 @@ export class SetupComponent implements OnInit {
   styleUrls: ['./setup.component.css'],
 })
 export class StaticIconsDialog {
-  staticIcons: any[] = [
-    {
-      value: 1,
-      icons: [
-        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-      ],
-    },
-    {
-      value: 1,
-      icons: [
-        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-      ],
-    },
-    {
-      value: 1,
-      icons: [
-        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-      ],
-    },
-    {
-      value: 1,
-      icons: [
-        { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-        { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-        { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-      ],
-    },
-  ];
+  constructor(public dialogRef: MatDialogRef<StaticIconsDialog>, @Inject(MAT_DIALOG_DATA) public data: any) {}
+  cancel() {
+    // closing itself and sending data to parent component
+    this.dialogRef.close({ data: 'you cancelled' });
+  }
 
-  constructor(public dialogRef: MatDialogRef<StaticIconsDialog>) {}
-  
+  confirm() {
+    // closing itself and sending data to parent component
+    this.dialogRef.close({ data: 'you confirmed' });
+  }
 }
