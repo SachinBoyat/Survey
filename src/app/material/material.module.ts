@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 const MaterialComponents: any = [
   MatCardModule,
@@ -29,6 +30,7 @@ const MaterialComponents: any = [
   MatCheckboxModule,
   MatRadioModule,
   MatSlideToggleModule,
+  ClipboardModule,
 ];
 
 @NgModule({

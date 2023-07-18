@@ -15,6 +15,7 @@ export class SetupComponent implements OnInit {
   selectedTitle!: string;
   customHeading: string = '';
   color: ThemePalette = 'accent';
+  value: any = `<p>Naveen<p>`;
   checked = false;
   disabled = false;
   headingVariant: any[] = [];
@@ -46,118 +47,411 @@ export class SetupComponent implements OnInit {
     lastModifiedDate: new Date(),
   };
 
+  // FIXME: the idea is to move this data to separate default data file in future
   reactionPackItems: any[] = [
     [
       {
         value: 1,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/1-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/1-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/1-3.png',
+          },
         ],
       },
-      {
-        value: 1,
-        icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-        ],
-      },
-      {
-        value: 1,
-        icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-        ],
-      },
-      {
-        value: 1,
-        icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-        ],
-      },
-    ],
-    [
       {
         value: 2,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/2-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/2-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/2-3.png',
+          },
         ],
       },
       {
-        value: 1,
+        value: 3,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/3-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/3-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/3-3.png',
+          },
         ],
       },
       {
-        value: 1,
+        value: 4,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/4-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/4-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/4-3.png',
+          },
         ],
       },
       {
-        value: 1,
+        value: 5,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/5-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/5-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/5-3.png',
+          },
+        ],
+      },
+      {
+        value: 6,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/6-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/6-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/6-3.png',
+          },
+        ],
+      },
+      {
+        value: 7,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/7-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/7-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/7-3.png',
+          },
+        ],
+      },
+      {
+        value: 8,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/8-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/8-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/8-3.png',
+          },
+        ],
+      },
+      {
+        value: 9,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/9-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/9-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/9-3.png',
+          },
+        ],
+      },
+      {
+        value: 10,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/10-1.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/10-2.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/10-3.png',
+          },
         ],
       },
     ],
     [
       {
+        value: 1,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-5.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-2.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-4.png',
+          },
+        ],
+      },
+      {
+        value: 2,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-2.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-4.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-1.png',
+          },
+        ],
+      },
+      {
         value: 3,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-2.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-4.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-1.png',
+          },
         ],
       },
       {
-        value: 1,
+        value: 4,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-4.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-1.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-5.png',
+          },
         ],
       },
       {
-        value: 1,
+        value: 5,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-4.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-1.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-5.png',
+          },
         ],
       },
+    ],
+    [
       {
         value: 1,
         icons: [
-          { text: 'Negative', url: '../../../assets/images/survey-images/Dissatisfied.gif' },
-          { text: 'Normal', url: '../../../assets/images/survey-images/Satisfied.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
-          { text: 'Positive', url: '../../../assets/images/survey-images/Exceeded Expectations.gif' },
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-5.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-2.png',
+          },
+          {
+            text: 'Unhappy',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-1.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/59-4.png',
+          },
+        ],
+      },
+      {
+        value: 2,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-2.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-4.png',
+          },
+          {
+            text: 'Unhappy',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-2.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/60-1.png',
+          },
+        ],
+      },
+      {
+        value: 3,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-2.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-4.png',
+          },
+          {
+            text: 'Unhappy',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-2.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/61-1.png',
+          },
+        ],
+      },
+      {
+        value: 4,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-4.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-1.png',
+          },
+          {
+            text: 'Unhappy',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-4.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/62-5.png',
+          },
+        ],
+      },
+      {
+        value: 5,
+        icons: [
+          {
+            text: 'Negative',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-4.png',
+          },
+          {
+            text: 'Normal',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-3.png',
+          },
+          {
+            text: 'Positive',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-1.png',
+          },
+          {
+            text: 'Unhappy',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-4.png',
+          },
+          {
+            text: 'Angry',
+            url: 'https://customer360storagedev.blob.core.windows.net/staticfiles/Icons/Static/63-5.png',
+          },
         ],
       },
     ],
@@ -245,6 +539,8 @@ export class SetupComponent implements OnInit {
       }
     }
   }
+
+  async copy() {}
 }
 
 @Component({
