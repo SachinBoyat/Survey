@@ -25,40 +25,15 @@
         <h2 style="font-weight: 500 !important">
           {{ previewSurveyData.title.length ? previewSurveyData.title : headingVariant[0]?.name }}
         </h2>
-        <div
-          *ngIf="
-            previewSurveyData.reactionPack === 0 && previewSurveyData.iconSetId === 0;
-            then default;
-            else selected_content
-          "
-        ></div>
-        <ng-template #default>
-          <div class="flex-sa mt-10 w-100p">
-            <div class="preview-image-signature1 flex-c flex-col">
-              <img src="../../../assets/images/survey-images/Dissatisfied.gif" height="50" width="50" />
-              <p>Negative</p>
-            </div>
-            <div class="preview-image-signature1 flex-c flex-col">
-              <img src="../../../assets/images/survey-images/Satisfied.gif" height="50" width="50" />
-              <p>Normal</p>
-            </div>
-            <div class="preview-image-signature1 flex-c flex-col">
-              <img src="../../../assets/images/survey-images/Exceeded Expectations.gif" height="50" width="50" />
-              <p>Positive</p>
-            </div>
+        <div class="flex-sa mt-10 w-100p">
+          <div
+            class="preview-image-signature1 flex-c flex-col"
+            *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
+          >
+            <img src="{{ icon.url }}" height="50" width="50" />
+            <p>{{ icon.text }}</p>
           </div>
-        </ng-template>
-        <ng-template #selected_content>
-          <div class="flex-sa mt-10 w-100p">
-            <div
-              class="preview-image-signature1 flex-c flex-col"
-              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
-            >
-              <img src="{{ icon.url }}" height="50" width="50" />
-              <p>{{ icon.text }}</p>
-            </div>
-          </div>
-        </ng-template>
+        </div>
       </mat-card>
       <h1 style="margin-top: 45px">Widget Setup</h1>
       <mat-radio-group aria-label="Select an option" class="flex-c flex-col">
@@ -119,27 +94,20 @@
         class="shadow-none flex-c flex-col"
         style="border: 1px solid #cccccc; padding: 15px; border-radius: 20px"
       >
-        <div
-          class="flex"
-          *ngIf="
-            previewSurveyData.reactionPack === 0 && previewSurveyData.iconSetId !== 0;
-            then default3;
-            else selected_content3
-          "
-        ></div>
+        <div class="flex" *ngIf="previewSurveyData.reactionPack !== 0; then default3; else selected_content3"></div>
         <ng-template #default3>
           <div class="flex-sb mt-10 w-100p">
-            <div
-              class="preview-image-signature flex-c flex-col"
-              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
-            >
+            <div class="preview-image-signature flex-c flex-col" *ngFor="let icon of reactionPackItems[0][0].icons">
               <img src="{{ icon.url }}" height="45" width="45" />
             </div>
           </div>
         </ng-template>
         <ng-template #selected_content3>
           <div class="flex-sb mt-10 w-100p">
-            <div class="preview-image-signature flex-c flex-col" *ngFor="let icon of reactionPackItems[0][0].icons">
+            <div
+              class="preview-image-signature flex-c flex-col"
+              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
+            >
               <img src="{{ icon.url }}" height="45" width="45" />
             </div>
           </div>
@@ -151,27 +119,20 @@
         class="shadow-none flex-c flex-col"
         style="border: 1px solid #cccccc; padding: 15px; border-radius: 20px"
       >
-        <div
-          class="flex"
-          *ngIf="
-            previewSurveyData.reactionPack === 1 && previewSurveyData.iconSetId !== 0;
-            then default4;
-            else selected_content4
-          "
-        ></div>
+        <div class="flex" *ngIf="previewSurveyData.reactionPack !== 1; then default4; else selected_content4"></div>
         <ng-template #default4>
           <div class="flex-sb mt-10 w-100p">
-            <div
-              class="preview-image-signature flex-c flex-col"
-              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
-            >
+            <div class="preview-image-signature flex-c flex-col" *ngFor="let icon of reactionPackItems[1][2].icons">
               <img src="{{ icon.url }}" height="45" width="45" />
             </div>
           </div>
         </ng-template>
         <ng-template #selected_content4>
           <div class="flex-sb mt-10 w-100p">
-            <div class="preview-image-signature flex-c flex-col" *ngFor="let icon of reactionPackItems[1][2].icons">
+            <div
+              class="preview-image-signature flex-c flex-col"
+              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
+            >
               <img src="{{ icon.url }}" height="45" width="45" />
             </div>
           </div>
@@ -183,27 +144,20 @@
         class="shadow-none flex-c flex-col"
         style="border: 1px solid #cccccc; padding: 15px 5px; border-radius: 20px"
       >
-        <div
-          class="flex"
-          *ngIf="
-            previewSurveyData.reactionPack === 2 && previewSurveyData.iconSetId !== 0;
-            then default5;
-            else selected_content5
-          "
-        ></div>
+        <div class="flex" *ngIf="previewSurveyData.reactionPack !== 2; then default5; else selected_content5"></div>
         <ng-template #default5>
           <div class="flex-sb mt-10 w-100p">
-            <div
-              class="preview-image-signature flex-c flex-col"
-              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
-            >
+            <div class="preview-image-signature flex-c flex-col" *ngFor="let icon of reactionPackItems[2][2].icons">
               <img src="{{ icon.url }}" height="45" width="45" />
             </div>
           </div>
         </ng-template>
         <ng-template #selected_content5>
           <div class="flex-sb mt-10 w-100p">
-            <div class="preview-image-signature flex-c flex-col" *ngFor="let icon of reactionPackItems[2][2].icons">
+            <div
+              class="preview-image-signature flex-c flex-col"
+              *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
+            >
               <img src="{{ icon.url }}" height="45" width="45" />
             </div>
           </div>
@@ -226,7 +180,7 @@
         <mat-card-content class="flex-sb" style="padding: 0">
           <div class="flex flex-col w-100p">
             <div class="mt-10">
-              <a mat-fab extended routerLink="." class="ready-btn" (click)="copy()"> Copy to the Clipboard </a>
+              <a mat-fab extended routerLink="." class="ready-btn" (click)="copyMessage()"> Copy to the Clipboard </a>
               <p class="mt-10" style="color: #a3a3a3">Ready to paste into your signatures</p>
             </div>
             <div class="mt-20">
