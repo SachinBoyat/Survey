@@ -464,6 +464,7 @@ export class SetupComponent implements OnInit {
     this.surveyService.getSurveyByOrgId(this.userTokenData.OrganizationId).subscribe(res => {
       if (res.length) {
         this.previewSurveyData = res[0];
+        if (res[0].headingType === 2) this.customHeading = res[0].title;
 
         for (let reactCount of this.selectedPack) {
           reactCount.isSelected = false;
@@ -527,6 +528,7 @@ export class SetupComponent implements OnInit {
     this.previewSurveyData.title = selectedOption.name;
     this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
       if (res) this.previewSurveyData = res;
+      this.customHeading = '';
     });
   }
 
