@@ -18,40 +18,39 @@
   <div class="setup-container flex-sb" style="align-items: flex-start !important">
     <div class="widget-preview" style="width: 35%" #inputTarget>
       <h1>Widget Preview</h1>
-      <mat-card
-        id="imageClass"
-        class="shadow-none imageClass"
-        style="
-          border: 1px solid #cccccc;
-          padding: 20px 0 40px 0;
-          border-radius: 15px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        "
-      >
+      <mat-card class="shadow-none image-class preview-class">
         <h2 style="font-weight: 500 !important">
           {{ previewSurveyData.title.length ? previewSurveyData.title : headingVariant[0]?.name }}
         </h2>
         <div class="mt-10 w-100p" style="display: flex; justify-content: space-around; align-items: center">
-          <span
-            style="
-              width: 80px;
-              height: 110px;
-              border-radius: 15px;
-              background-color: #f8f7f7;
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              flex-direction: column;
-            "
-            *ngFor="let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons"
-          >
-            <img src="{{ icon.url }}" height="50" width="50" />
-            <span style="font-size: 12px; margin-top: 10px; text-align: center; margin-bottom: 0; width: 50px">
-              {{ icon.text }}
-            </span>
-          </span>
+          <table cellpadding="0" [cellSpacing]="0" class="preTable">
+            <tr>
+              <td
+                style="border-radius: 15px 15px 0 0; border-left: 2px solid #fff; height: 50px; padding-top: 10px"
+                *ngFor="
+                  let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons
+                "
+              >
+                <img src="{{ icon.url }}" height="45" width="45" />
+              </td>
+            </tr>
+            <tr>
+              <td
+                style="
+                  font-size: 12px;
+                  border-radius: 0 0 15px 15px;
+                  border-left: 2px solid #fff;
+                  height: 30px;
+                  padding-bottom: 5px;
+                "
+                *ngFor="
+                  let icon of reactionPackItems[previewSurveyData.reactionPack][previewSurveyData.iconSetId].icons
+                "
+              >
+                {{ icon.text }}
+              </td>
+            </tr>
+          </table>
         </div>
       </mat-card>
       <h1 style="margin-top: 45px">Widget Setup</h1>
@@ -199,7 +198,9 @@
         <mat-card-content class="flex-sb" style="padding: 0">
           <div class="flex flex-col w-100p">
             <div class="mt-10">
-              <a mat-fab extended routerLink="." class="ready-btn" (click)="copyMessage()"> Copy to the Clipboard </a>
+              <a mat-fab extended routerLink="." class="ready-btn copy-image" (click)="copyMessage()">
+                Copy to the Clipboard
+              </a>
               <p class="mt-10" style="color: #a3a3a3">Ready to paste into your signatures</p>
             </div>
             <div class="mt-20">
@@ -209,7 +210,7 @@
                 routerLink="."
                 class="ready-btn"
                 [cdkCopyToClipboard]="copyTheCode"
-                (click)="openCopyTheCodeSnackbar('Code Copied', 'close')"
+                (click)="openCopyTheCodeSnackbar('Code Copied', '')"
               >
                 Copy the code
               </a>
@@ -226,7 +227,13 @@
     <div class="options" style="width: 30%">
       <h1>Options</h1>
       <section class="example-section">
-        <mat-slide-toggle class="example-margin allow-user" [color]="color" [checked]="checked" [disabled]="disabled">
+        <mat-slide-toggle
+          class="example-margin allow-user"
+          [color]="color"
+          (click)="allUserFeedbackHandler()"
+          [checked]="previewSurveyData.isRecationOff"
+          [disabled]="disabled"
+        >
           Allow user feedback &nbsp; &nbsp; &nbsp; &nbsp; 50%
         </mat-slide-toggle>
         <p style="color: #a3a3a3" class="mt-15">
@@ -235,7 +242,13 @@
       </section>
 
       <section class="example-section" style="margin-top: 70px">
-        <mat-slide-toggle class="example-margin allow-user" [color]="color" [checked]="checked" [disabled]="disabled">
+        <mat-slide-toggle
+          class="example-margin allow-user"
+          [color]="color"
+          (click)="allUserReviewHandler()"
+          [checked]="previewSurveyData.isReviewOff"
+          [disabled]="disabled"
+        >
           Allow user review &nbsp; &nbsp; &nbsp; &nbsp; 50%
         </mat-slide-toggle>
         <p class="mt-15" style="color: #a3a3a3">
