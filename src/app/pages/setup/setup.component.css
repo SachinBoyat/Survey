@@ -70,6 +70,10 @@
   display: flex;
 }
 
+::ng-deep.blue-snackbar > div {
+  background-color: blue !important;
+}
+
 .staff-members {
   width: 100px;
   font-size: 18px;

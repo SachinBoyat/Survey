@@ -5,6 +5,7 @@ import { SurveyService } from 'src/app/services/survey.service';
 import { JWTTokenService } from 'src/app/services/jwttoken.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-setup',
@@ -15,6 +16,7 @@ export class SetupComponent implements OnInit {
   selectedTitle!: string;
   customHeading: string = '';
   color: ThemePalette = 'accent';
+  copyTheCode: any = '';
   checked = false;
   disabled = false;
   headingVariant: any[] = [];
@@ -456,13 +458,19 @@ export class SetupComponent implements OnInit {
     ],
   ];
 
-  constructor(public dialog: MatDialog, private surveyService: SurveyService, private auth: AuthService) {
+  constructor(
+    public dialog: MatDialog,
+    private surveyService: SurveyService,
+    private auth: AuthService,
+    private _snackBar: MatSnackBar
+  ) {
     this.userTokenData = this.auth.decodeToken();
     this.previewSurveyData.organizationId = this.userTokenData.OrganizationId;
     // override the default survery data
     this.surveyService.getSurveyByOrgId(this.userTokenData.OrganizationId).subscribe(res => {
       if (res.length) {
         this.previewSurveyData = res[0];
+        this.generateCopyToCode();
         if (res[0].headingType === 2) this.customHeading = res[0].title;
 
         for (let reactCount of this.selectedPack) {
@@ -477,6 +485,53 @@ export class SetupComponent implements OnInit {
     });
   }
   ngOnInit() {}
+
+  openCopyTheCodeSnackbar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+      panelClass: ['blue-snackbar'],
+    });
+  }
+
+  generateCopyToCode() {
+    let imojiStr = ``;
+    for (let icon of this.reactionPackItems[this.previewSurveyData.reactionPack][this.previewSurveyData.iconSetId]
+      .icons) {
+      imojiStr += `<span class="flex emoji">
+          <img src="${icon.url}" height="50" width="50" />
+          <span class="emojiText"> ${icon.text} </span>
+        </span>`;
+    }
+
+    this.copyTheCode = `
+    <style>
+      .flex {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .emoji {
+        width: 80px;
+        height: 110px;
+      }
+
+      .emojiText {
+        font-size: 12px;
+        margin-top: 10px;
+        text-align: center
+      }
+    </style>
+    <div class="flex">
+      <h2>
+        ${this.previewSurveyData.title.length ? this.previewSurveyData.title : this.headingVariant[0]?.name}
+      </h2>
+      <div class="flex"  style="flex-direction: row">
+        ${imojiStr}
+      </div>
+    </div>`;
+  }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, packCount: number, packData: any[]): void {
     let dialogRef = this.dialog.open(StaticIconsDialog, {
@@ -502,6 +557,7 @@ export class SetupComponent implements OnInit {
         this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
           if (res) {
             this.previewSurveyData = res;
+            this.generateCopyToCode();
 
             for (let reactCount of this.selectedPack) {
               reactCount.isSelected = false;
@@ -520,6 +576,7 @@ export class SetupComponent implements OnInit {
     this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
       if (res) this.previewSurveyData = res;
     });
+    this.generateCopyToCode();
   }
 
   variantHeadingeHandler(selectedOption: any) {
@@ -529,6 +586,7 @@ export class SetupComponent implements OnInit {
       if (res) this.previewSurveyData = res;
       this.customHeading = '';
     });
+    this.generateCopyToCode();
   }
 
   packCountHandler(count: number) {
@@ -542,8 +600,6 @@ export class SetupComponent implements OnInit {
   }
 
   copyMessage() {}
-
-  copyTheCode() {}
 }
 
 @Component({
