@@ -17,7 +17,6 @@ export class SetupComponent implements OnInit {
   customHeading: string = '';
   color: ThemePalette = 'accent';
   copyTheCode: any = '';
-  checked = false;
   disabled = false;
   headingVariant: any[] = [];
   orgnizatioId: string = '';
@@ -470,7 +469,6 @@ export class SetupComponent implements OnInit {
     this.surveyService.getSurveyByOrgId(this.userTokenData.OrganizationId).subscribe(res => {
       if (res.length) {
         this.previewSurveyData = res[0];
-        this.generateCopyToCode();
         if (res[0].headingType === 2) this.customHeading = res[0].title;
 
         for (let reactCount of this.selectedPack) {
@@ -485,14 +483,22 @@ export class SetupComponent implements OnInit {
     });
   }
   ngOnInit() {}
-
+  // copy code snackbar
   openCopyTheCodeSnackbar(message: string, action: string) {
+    this.generateCopyToCode();
     this._snackBar.open(message, action, {
       duration: 3000,
       panelClass: ['blue-snackbar'],
     });
   }
-
+  // copy to clipboard snackbar
+  openCodeCopyTheCodeSnackbar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+      panelClass: ['blue-snackbar'],
+    });
+  }
+  // handler to copy the html code of survey
   generateCopyToCode() {
     let imojiStr = ``;
     for (let icon of this.reactionPackItems[this.previewSurveyData.reactionPack][this.previewSurveyData.iconSetId]
@@ -532,7 +538,7 @@ export class SetupComponent implements OnInit {
       </div>
     </div>`;
   }
-
+  // to open the dialog when react pack selected
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, packCount: number, packData: any[]): void {
     let dialogRef = this.dialog.open(StaticIconsDialog, {
       width: '470px',
@@ -557,7 +563,6 @@ export class SetupComponent implements OnInit {
         this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
           if (res) {
             this.previewSurveyData = res;
-            this.generateCopyToCode();
 
             for (let reactCount of this.selectedPack) {
               reactCount.isSelected = false;
@@ -569,16 +574,29 @@ export class SetupComponent implements OnInit {
     });
   }
   ngOnDestroy() {}
-
+  // handler for custom heading typing
   customHeadingeHandler(val: string) {
     this.previewSurveyData.headingType = 2;
     this.previewSurveyData.title = val;
     this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
       if (res) this.previewSurveyData = res;
     });
-    this.generateCopyToCode();
   }
-
+  // handler for stop/allow user Feedback
+  allUserFeedbackHandler() {
+    this.previewSurveyData.isRecationOff = !this.previewSurveyData.isRecationOff;
+    this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
+      if (res) this.previewSurveyData = res;
+    });
+  }
+  // handler for stop/allow user Review
+  allUserReviewHandler() {
+    this.previewSurveyData.isReviewOff = !this.previewSurveyData.isReviewOff;
+    this.surveyService.postUpdateSurveyData(this.previewSurveyData).subscribe(res => {
+      if (res) this.previewSurveyData = res;
+    });
+  }
+  //  handler for choosing the heading variant
   variantHeadingeHandler(selectedOption: any) {
     this.previewSurveyData.headingType = 1;
     this.previewSurveyData.title = selectedOption.name;
@@ -586,9 +604,8 @@ export class SetupComponent implements OnInit {
       if (res) this.previewSurveyData = res;
       this.customHeading = '';
     });
-    this.generateCopyToCode();
   }
-
+  // handler for reaction pack count
   packCountHandler(count: number) {
     for (let reactCount of this.selectedPack) {
       if (reactCount.reactionPack === count) {
@@ -598,8 +615,31 @@ export class SetupComponent implements OnInit {
       }
     }
   }
+  // handler for copy the survey to clipboard
+  copyMessage() {
+    var copyImgBtn: any = document.querySelector('.copy-image');
+    copyImgBtn.addEventListener('click', (event: Event) => {
+      var imageElem: any = document.querySelector('.image-class');
+      var range = document.createRange();
+      range.selectNode(imageElem);
+      const a: any = window.getSelection();
+      a.addRange(range);
 
-  copyMessage() {}
+      try {
+        // Now that we've selected the anchor text, execute the copy command
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copy image command was ' + msg);
+        this.openCodeCopyTheCodeSnackbar('Copied to Clipboard', '');
+      } catch (err) {
+        console.log('Oops, unable to copy');
+      }
+
+      // removeRange(range) when it is supported
+      const b: any = window.getSelection();
+      b.removeAllRanges();
+    });
+  }
 }
 
 @Component({

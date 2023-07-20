@@ -47,7 +47,7 @@
 }
 
 .ready-btn {
-  background-color: green;
+  background-color: rgb(98, 177, 78);
   width: 100%;
   font-size: 17px;
   font-weight: 400;
@@ -71,7 +71,11 @@
 }
 
 ::ng-deep.blue-snackbar > div {
-  background-color: blue !important;
+  background-color: rgb(10, 115, 33) !important;
+}
+
+::ng-deep.mat-mdc-snack-bar-label.mdc-snackbar__label {
+  text-align: center;
 }
 
 .staff-members {
@@ -107,4 +111,19 @@
 
 .reaction-pack-bg {
   background-color: gainsboro;
+}
+
+table.preTable td {
+  width: 70px;
+  background-color: #f8f7f7;
+  text-align: center;
+}
+
+.preview-class {
+  border: 1px solid #cccccc;
+  padding: 20px 0 40px 0;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
