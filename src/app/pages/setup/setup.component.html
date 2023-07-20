@@ -203,7 +203,16 @@
               <p class="mt-10" style="color: #a3a3a3">Ready to paste into your signatures</p>
             </div>
             <div class="mt-20">
-              <a mat-fab extended routerLink="." class="ready-btn" (click)="copyTheCode()"> Copy the code </a>
+              <a
+                mat-fab
+                extended
+                routerLink="."
+                class="ready-btn"
+                [cdkCopyToClipboard]="copyTheCode"
+                (click)="openCopyTheCodeSnackbar('Code Copied', 'close')"
+              >
+                Copy the code
+              </a>
               <p class="mt-10" style="color: #a3a3a3">Copy html code to use it as you want</p>
             </div>
             <div class="mt-20">
