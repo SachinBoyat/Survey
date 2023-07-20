@@ -15,7 +15,6 @@ export class SetupComponent implements OnInit {
   selectedTitle!: string;
   customHeading: string = '';
   color: ThemePalette = 'accent';
-  value: any = `<p>Naveen<p>`;
   checked = false;
   disabled = false;
   headingVariant: any[] = [];
@@ -542,7 +541,9 @@ export class SetupComponent implements OnInit {
     }
   }
 
-  async copy() {}
+  copyMessage() {}
+
+  copyTheCode() {}
 }
 
 @Component({
